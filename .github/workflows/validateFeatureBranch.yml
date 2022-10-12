@@ -2,9 +2,8 @@ name: Pull request to development branch.
 
 # Definition when the workflow should run
 on:
-    push:
-      branches:
-        - 'feature/**'
+    pull_request:
+      branches: [ develop ]
       paths:
         - 'force-app/**'
 jobs:
