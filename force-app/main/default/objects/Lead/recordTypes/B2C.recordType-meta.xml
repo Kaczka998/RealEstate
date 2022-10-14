@@ -195,15 +195,11 @@
     <picklistValues>
         <picklist>ProductInterest__c</picklist>
         <values>
-            <fullName>GC1000 series</fullName>
+            <fullName>Apartments</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>GC3000 series</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>GC5000 series</fullName>
+            <fullName>Flats</fullName>
             <default>false</default>
         </values>
     </picklistValues>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>Lead_Inbound_Form</members>
+		<members>Thank_you_page</members>
+		<name>ApexPage</name>
+	</types>
+	<types>
 		<members>EditableRealEstateLogoDesignPNGTran</members>
 		<name>ContentAsset</name>
 	</types>
@@ -13,9 +18,17 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+		<members>*</members>
+		<name>CustomSite</name>
+	</types>
+	<types>
 		<members>Real_Estate_Company</members>
 		<members>Real_Estate_Company_UtilityBar</members>
 		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>leadFromController</members>
+		<name>StaticResource</name>
 	</types>
 	<version>55.0</version>
 </Package>
