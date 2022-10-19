@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Email_Meeting_Scheduled</name>
         <label>Email Meeting Scheduled</label>
-        <locationX>484</locationX>
+        <locationX>486</locationX>
         <locationY>244</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
@@ -18,6 +18,12 @@
             <name>emailAddresses</name>
             <value>
                 <stringValue>{!Get_lead.Email},{!$User.Email}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -130,7 +136,7 @@
         <name>Get_lead</name>
         <label>Get lead</label>
         <locationX>894</locationX>
-        <locationY>63</locationY>
+        <locationY>60</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>General_info</targetReference>
@@ -259,14 +265,14 @@
             </defaultValue>
             <fieldText>Place</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Meeting_Time</name>
             <dataType>DateTime</dataType>
-            <fieldText>Meeting_Time</fieldText>
+            <fieldText>Meeting Time</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -275,7 +281,7 @@
         <name>Summary</name>
         <label>Summary</label>
         <locationX>1214</locationX>
-        <locationY>240</locationY>
+        <locationY>239</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -283,14 +289,32 @@
             <targetReference>Meeting</targetReference>
         </connector>
         <fields>
-            <name>Summary_invitor</name>
-            <fieldText>&lt;p&gt;{!Meeting_Parties_Me}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Summary_invited</name>
-            <fieldText>&lt;p&gt;{!Meeting_Parties_Lead}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
+            <name>Meeting_Parties</name>
+            <fieldText>Meeting Parties</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Meeting_Parties_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Summary_invitor</name>
+                    <fieldText>&lt;p&gt;{!Meeting_Parties_Me}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Summary_invited</name>
+                    <fieldText>&lt;p&gt;{!Meeting_Parties_Lead}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
         </fields>
         <fields>
             <name>Summary_Subject</name>
@@ -327,21 +351,27 @@
             <targetReference>Get_lead</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>meeting_scheduled_email</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Hello {!Get_lead.FirstName} {!Get_lead.LastName}!
-We are happy to inform you that your meeting with {!$User.FirstName} {!$User.LastName} has been scheduled.
+        <text>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot; /&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;date=no&quot; /&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;address=no&quot; /&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;
+&lt;title&gt;Email Template&lt;/title&gt;
 
-Subject: {!Subject}
-Place: {!Meeting_place}
-Time: {!Meeting_Time}
-
-If you can&apos;t parcitipate for any reason please contact us.
-
-See you soon!
-Real Estate Company</text>
+&lt;!DOCTYPE html&gt;
+&lt;body style=&quot;background-image: url(&apos;https://www.mandglawgroup.com/wp-content/uploads/2020/05/Everything-You-Need-to-Know-About-Save-Our-Home-AZ-SOHAZ-1980x1114.jpeg&apos;);background-repeat: no-repeat;background-position: center top;background-color: transparent;background-size: cover;&quot;&gt;
+&lt;div style=&quot;padding: 5%;width:60%;margin-left:15%; background-color: white;&quot;&gt;&lt;p&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Hello {!Get_lead.FirstName} {!Get_lead.LastName}!&lt;/span&gt;&lt;/{!Yes_Send}p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;We are happy to inform you that your meeting with &lt;strong&gt;{!$User.FirstName} {!$User.LastName}&lt;/strong&gt; has been scheduled.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Subject: {!Subject}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Place: {!Meeting_place}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Time: {!Meeting_Time}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(253, 149, 81);&quot;&gt;If you can not parcitipate for any reason please contact us.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;See you soon!&lt;/p&gt;&lt;p&gt;&lt;em style=&quot;font-size: 14px; font-family: verdana;&quot;&gt;Real Estate Company&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align: center; background-image:url(&apos;https://graphicsfamily.com/wp-content/uploads/edd/2021/06/Real-Estate-Logo-Design-Youtube-2048x1152.jpg&apos;); width:100px; height:100px;&quot;&gt;&lt;/div&gt;
+&lt;div&gt;
+&lt;/body&gt;</text>
     </textTemplates>
     <variables>
         <name>Lead_Name</name>

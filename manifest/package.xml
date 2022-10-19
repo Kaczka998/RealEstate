@@ -36,6 +36,13 @@
 		<name>Flow</name>
 	</types>
 	<types>
+		<members>Head_Of_Sales</members>
+		<members>Sales_Management</members>
+		<members>Sales_coordinators</members>
+		<members>Sales_representants</members>
+		<name>Role</name>
+	</types>
+	<types>
 		<members>leadFromController</members>
 		<members>real_estate_bckg</members>
 		<name>StaticResource</name>
