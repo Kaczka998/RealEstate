@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Email_Meeting_Scheduled</name>
         <label>Email Meeting Scheduled</label>
-        <locationX>484</locationX>
+        <locationX>486</locationX>
         <locationY>244</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
@@ -18,6 +18,12 @@
             <name>emailAddresses</name>
             <value>
                 <stringValue>{!Get_lead.Email},{!$User.Email}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -56,7 +62,7 @@
             <label>Yes Send</label>
         </rules>
     </decisions>
-    <description>Edit and end this flow!!!!</description>
+    <description>Final version (i hope_</description>
     <environments>Default</environments>
     <interviewLabel>Schedule lead meeting {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Schedule lead meeting</label>
@@ -130,7 +136,7 @@
         <name>Get_lead</name>
         <label>Get lead</label>
         <locationX>894</locationX>
-        <locationY>63</locationY>
+        <locationY>60</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>General_info</targetReference>
@@ -259,14 +265,14 @@
             </defaultValue>
             <fieldText>Place</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Meeting_Time</name>
             <dataType>DateTime</dataType>
-            <fieldText>Meeting_Time</fieldText>
+            <fieldText>Meeting Time</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -275,7 +281,7 @@
         <name>Summary</name>
         <label>Summary</label>
         <locationX>1214</locationX>
-        <locationY>240</locationY>
+        <locationY>239</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -283,14 +289,32 @@
             <targetReference>Meeting</targetReference>
         </connector>
         <fields>
-            <name>Summary_invitor</name>
-            <fieldText>&lt;p&gt;{!Meeting_Parties_Me}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Summary_invited</name>
-            <fieldText>&lt;p&gt;{!Meeting_Parties_Lead}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
+            <name>Meeting_Parties</name>
+            <fieldText>Meeting Parties</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Meeting_Parties_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Summary_invitor</name>
+                    <fieldText>&lt;p&gt;{!Meeting_Parties_Me}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Summary_invited</name>
+                    <fieldText>&lt;p&gt;{!Meeting_Parties_Lead}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
         </fields>
         <fields>
             <name>Summary_Subject</name>
@@ -331,17 +355,23 @@
     <textTemplates>
         <name>meeting_scheduled_email</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Hello {!Get_lead.FirstName} {!Get_lead.LastName}!
-We are happy to inform you that your meeting with {!$User.FirstName} {!$User.LastName} has been scheduled.
-
-Subject: {!Subject}
-Place: {!Meeting_place}
-Time: {!Meeting_Time}
-
-If you can&apos;t parcitipate for any reason please contact us.
-
-See you soon!
-Real Estate Company</text>
+        <text>&lt;!DOCTYPE html&gt;
+&lt;link href=&quot;http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;body style=&quot;background-image: url(&apos;https://www.mandglawgroup.com/wp-content/uploads/2020/05/Everything-You-Need-to-Know-About-Save-Our-Home-AZ-SOHAZ-1980x1114.jpeg&apos;);background-repeat: no-repeat;background-position: center top;background-color: transparent;background-size: cover;&quot;&gt;
+&lt;div style=&quot;;width:70%; margin-left:15%; background-color: transparent;&quot;&gt;&lt;img src=&quot;https://media-exp1.licdn.com/dms/image/C511BAQH84qH6saHIJA/company-background_10000/0/1575786967662?e=2147483647&amp;v=beta&amp;t=aVLApaXRBc1KGVn2im4kGtPaW2M5omE1nq4agv4vM54&quot; style=&quot;width:100%;&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;padding: 5%;width:60%;margin-left:15%; background-color: rgba(192,192,192,0.9);&quot;&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Hello {!Get_lead.FirstName} {!Get_lead.LastName}!&lt;/span&gt;&lt;/{!Yes_Send}p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;We are happy to inform you that your meeting with&lt;strong&gt;{!$User.FirstName} {!$User.LastName}&lt;/strong&gt; has been scheduled.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Subject: {!Subject}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Place: {!Meeting_place}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Time: {!Meeting_Time}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style=&quot;color: red;&quot;&gt;If you can not parcitipate for any reason please contact us.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;See you soon!&lt;/p&gt;
+&lt;p&gt;&lt;em style=&quot;font-size: 18px; font-family: verdana;&quot;&gt;Real Estate Company&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;img src=&quot;https://www.seekpng.com/png/full/839-8391535_best-real-estate-logo-real-estate-logo-usa.png&quot; alt=&quot;RE_Logo_Small.png&quot; style=&quot;height:100px;&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div style=&quot;display: flex; justify-content: space-between; width:60%;margin-left:15%; background-color: rgb(193,193,193); padding: 2% 5%;&quot;&gt;
+&lt;div&gt;For more information contact us: &lt;/div&gt;
+                    &lt;div&gt;&lt;span class=&quot;fa fa-phone&quot;&gt;&lt;/span&gt; 001 1023 567&lt;/div&gt;
+                    &lt;div&gt;&lt;span class=&quot;fa fa-envelope-o&quot;&gt;&lt;/span&gt; contact@company.com&lt;/div&gt;
+                &lt;/div&gt;
+&lt;/body&gt;</text>
     </textTemplates>
     <variables>
         <name>Lead_Name</name>

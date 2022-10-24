@@ -11,6 +11,19 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
+		<members>Lead.ESL Queue Assigment</members>
+		<name>AssignmentRule</name>
+	</types>
+	<types>
+		<members>Lead</members>
+		<name>AssignmentRules</name>
+	</types>
+	<types>
+		<members>Lead.B2B_Lead_Types</members>
+		<members>Lead.B2C_Lead_Types</members>
+		<name>BusinessProcess</name>
+	</types>
+	<types>
 		<members>EditableRealEstateLogoDesignPNGTran</members>
 		<name>ContentAsset</name>
 	</types>
@@ -27,6 +40,15 @@
 		<name>CustomSite</name>
 	</types>
 	<types>
+		<members>unfiled$public/ESL_Lead_Assigment_to_Queue</members>
+		<members>unfiled$public/First_Nurturing_Email_Template</members>
+		<members>unfiled$public/Meetinig_schedule_info</members>
+		<members>unfiled$public/Second_Email_Nurturing_Email_Template</members>
+		<name>EmailTemplate</name>
+	</types>
+	<types>
+		<members>Email_Send_When_Lead_Meeting_is_Scheduled</members>
+		<members>Lead_Record_Page</members>
 		<members>Real_Estate_Company</members>
 		<members>Real_Estate_Company_UtilityBar</members>
 		<name>FlexiPage</name>
@@ -34,6 +56,43 @@
 	<types>
 		<members>*</members>
 		<name>Flow</name>
+	</types>
+	<types>
+		<members>Lead-Lead %28Marketing%29 Layout</members>
+		<members>Lead-Lead %28Sales%29 Layout</members>
+		<members>Lead-Lead %28Support%29 Layout</members>
+		<members>Lead-Lead Layout</members>
+		<members>Lead-Lead New Or Research</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>Head Of Sales</members>
+		<members>Sales Coordinator</members>
+		<members>Sales Manager</members>
+		<members>Sales Representant</members>
+		<name>Profile</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>Queue</name>
+	</types>
+	<types>
+		<members>Head_Of_Sales</members>
+		<members>Sales_Management</members>
+		<members>Sales_coordinators</members>
+		<members>Sales_representants</members>
+		<name>Role</name>
+	</types>
+	<types>
+		<members>Lead.Sales_Coordinators_Leads</members>
+		<members>Lead.Sales_Management_Leads</members>
+		<members>Opportunity.Sales_Coordinators_Opportunity</members>
+		<members>Opportunity.Sales_Management_Opportunity</members>
+		<name>SharingOwnerRule</name>
+	</types>
+	<types>
+		<members>Lead</members>
+		<name>SharingRules</name>
 	</types>
 	<types>
 		<members>leadFromController</members>

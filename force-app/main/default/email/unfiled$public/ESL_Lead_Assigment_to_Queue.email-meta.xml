@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>ESL Lead Assigment to Queue</name>
+    <style>none</style>
+    <subject>New Lead has been assigned to the ESL Queue</subject>
+    <textOnly>New Lead has been created on {!Lead.CreatedDate} and assigned to the ESL queue. 
+
+Lead name: {!Lead.Name}
+Product interest: {!Lead.ProductInterest__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
