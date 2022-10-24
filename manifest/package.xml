@@ -47,8 +47,6 @@
 		<name>EmailTemplate</name>
 	</types>
 	<types>
-		<members>Email_Send_When_Lead_Meeting_is_Scheduled</members>
-		<members>Lead_Record_Page</members>
 		<members>Real_Estate_Company</members>
 		<members>Real_Estate_Company_UtilityBar</members>
 		<name>FlexiPage</name>
@@ -75,10 +73,6 @@
 	<types>
 		<members>*</members>
 		<name>Queue</name>
-	</types>
-	<types>
-		<members>Lead.Meeting</members>
-		<name>QuickAction</name>
 	</types>
 	<types>
 		<members>Head_Of_Sales</members>
