@@ -77,6 +77,10 @@
 		<name>Queue</name>
 	</types>
 	<types>
+		<members>Lead.Meeting</members>
+		<name>QuickAction</name>
+	</types>
+	<types>
 		<members>Head_Of_Sales</members>
 		<members>Sales_Management</members>
 		<members>Sales_coordinators</members>
