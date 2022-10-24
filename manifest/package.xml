@@ -52,7 +52,7 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>Schedule_lead_meeting</members>
 		<name>Flow</name>
 	</types>
 	<types>
@@ -100,11 +100,6 @@
 		<members>leadFromController</members>
 		<members>real_estate_bckg</members>
 		<name>StaticResource</name>
-	</types>
-	<types>
-		<members>Lead.Email_sent_2_days_after_Lead_enters_the_Nurturing_stage</members>
-		<members>Lead.Email_sent_when_Lead_enters_the_Nurturing_stage</members>
-		<name>WorkflowAlert</name>
 	</types>
 	<version>55.0</version>
 </Package>
