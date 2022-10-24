@@ -75,6 +75,10 @@
 		<name>Queue</name>
 	</types>
 	<types>
+		<members>Lead.Meeting</members>
+		<name>QuickAction</name>
+	</types>
+	<types>
 		<members>Head_Of_Sales</members>
 		<members>Sales_Management</members>
 		<members>Sales_coordinators</members>
@@ -96,6 +100,11 @@
 		<members>leadFromController</members>
 		<members>real_estate_bckg</members>
 		<name>StaticResource</name>
+	</types>
+	<types>
+		<members>Lead.Email_sent_2_days_after_Lead_enters_the_Nurturing_stage</members>
+		<members>Lead.Email_sent_when_Lead_enters_the_Nurturing_stage</members>
+		<name>WorkflowAlert</name>
 	</types>
 	<version>55.0</version>
 </Package>
