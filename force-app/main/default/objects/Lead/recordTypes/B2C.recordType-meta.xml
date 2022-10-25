@@ -195,11 +195,7 @@
     <picklistValues>
         <picklist>ProductInterest__c</picklist>
         <values>
-            <fullName>Apartments</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Flats</fullName>
+            <fullName>Flats_And_Apartments</fullName>
             <default>false</default>
         </values>
     </picklistValues>

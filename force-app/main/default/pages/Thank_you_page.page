@@ -1,6 +1,121 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <h1>Thank you!</h1>
+<apex:page showHeader="false" id="webToLeadForm">
+    <style>
+        .vfHelpText a            {position:relative;}
+        .vfHelpText a span       {display: none;}
+        .vfHelpText a:hover span {display: block;
+        position:absolute;
+        top:1.05em;
+        padding:2px 5px;
+        right:1em; width:17em;  
+        background-color:#abd6f8;
+        color:black;
+        }
+        body{
+            background-image: url("{!$Resource.real_estate_bckg}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin:0;
+            min-height: 100vh;
+            
+        }
+       
+        .form{
+            width:340px;
+            height:530px;
+            background:#e6e6e6;
+            border-radius:8px;
+            box-shadow:0 0 40px -10px #000;
+            margin:calc(50vh - 500px) auto;
+            padding:20px 30px;
+            max-width:calc(100vw - 40px);
+            box-sizing:border-box;
+            font-family:'Montserrat',sans-serif;
+            position:relative}
 
-  <!-- End Default Content REMOVE THIS -->
+            h2{
+                margin:10px 0;
+                padding-bottom:10px;
+                width:180px;
+                color:#78788c;
+                border-bottom:3px solid #78788c}
+            input{
+                width:100%;
+                padding:10px;
+                box-sizing:border-box;
+                background:none;
+                outline:none;
+                resize:none;
+                border:0;
+                font-family:'Montserrat',sans-serif;
+                transition:all .3s;
+                border-bottom:2px solid #bebed2}
+            input:focus{
+                border-bottom:2px solid #78788c}
+        p:before{
+            content:attr(type);
+            display:block;
+            margin:28px 0 0;
+            font-size:14px;
+            color:#5a5a5a}
+        
+            #submitButton{
+                float:right;
+                padding:8px 12px;
+                margin:8px 0 0;
+                font-family:'Montserrat',sans-serif;
+                border:2px solid #78788c;
+                background:0;color:#5a5a6e;
+                cursor:pointer;
+                transition:all .3s}
+
+                #submitButton:hover{
+            background:#78788c;
+            color:#fff}
+
+            .footer{
+                content:'Hi';
+                position:absolute;
+                bottom:-15px;
+                right:-20px;
+                background:#50505a;
+                color:#fff;
+                width:320px;
+                padding:16px 4px 16px 0;
+                border-radius:6px;
+                font-size:13px;
+                box-shadow:10px 10px 40px -14px #000}
+            span{
+                margin:0 5px 0 15px}
+                .cont{
+  margin:10px 0;
+  padding-bottom:10px;
+  width:100%;
+  color:#78788c;
+  border-bottom:3px solid black;
+  align-items: center;
+
+}
+    </style>
+ 
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
+
+    <div class="header">
+        <img src="{!$Resource.real_estate_logo}" style="width: 100px; margin: 20px"/>
+    </div> 
+                    
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="form" id="form">
+        
+              
+                <input type="hidden" name="oid" value="00D7Q000008MFu2"/>
+                <input type="hidden" name="retURL" value="https://"/>
+                           
+                <input type="hidden" name="recordType" id="recordType" value="XXXXXXXXXXXXXXX"/>
+
+                <h2 class="cont" style="font-size: 45px;">THANK YOU</h2>
+    <!-- <h2 style="font-size: 25px"> We will contact with you! </h2> -->
+
+
+        </form>
+
 </apex:page>

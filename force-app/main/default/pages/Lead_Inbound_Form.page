@@ -1,36 +1,174 @@
-<apex:page >
+<apex:page showHeader="false" id="webToLeadForm">
+    <style>
+        .vfHelpText a            {position:relative;}
+        .vfHelpText a span       {display: none;}
+        .vfHelpText a:hover span {display: block;
+        position:absolute;
+        top:1.05em;
+        padding:2px 5px;
+        right:1em; width:17em;  
+        background-color:#abd6f8;
+        color:black;
+        }
+        body{
+            background-image: url("{!$Resource.real_estate_bckg}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin:0;
+            min-height: 100vh;
+            
+        }
+       
+        .form{
+            width:340px;
+            height:500px;
+            background:#e6e6e6;
+            border-radius:8px;
+            box-shadow:0 0 40px -10px #000;
+            margin:calc(50vh - 500px) auto;
+            padding:20px 30px;
+            max-width:calc(100vw - 40px);
+            box-sizing:border-box;
+            font-family:'Montserrat',sans-serif;
+            position:relative}
+
+            h2{
+                margin:10px 0;
+                padding-bottom:2px;
+                width:180px;
+                color:#78788c;
+                border-bottom:3px solid #78788c}
+            input{
+                width:100%;
+                padding:10px;
+                margin-bottom:10px;
+                box-sizing:border-box;
+                background:none;
+                outline:none;
+                resize:none;
+                border:0;
+                font-family:'Montserrat',sans-serif;
+                transition:all .3s;
+                border-bottom:2px solid #bebed2}
+            input:focus{
+                border-bottom:2px solid #78788c}
+        p:before{
+            content:attr(type);
+            /* display:block; */
+            margin:48px 0 0;
+            padding: 28px 0;
+            font-size:14px;
+            color:#5a5a5a;
+        width: fit-content;}
+        
+            #submitButton{
+                float:right;
+                padding:8px 12px;
+                margin:16px 0 0;
+                font-family:'Montserrat',sans-serif;
+                border:2px solid #78788c;
+                background:0;color:#5a5a6e;
+                cursor:pointer;
+                transition:all .3s}
+
+                #submitButton:hover{
+            background:#78788c;
+            color:#fff}
+
+            .footer{
+                content:'Hi';
+                position:absolute;
+                bottom:-15px;
+                right:-20px;
+                background:#50505a;
+                color:#fff;
+                width:320px;
+                padding:16px 4px 16px 0;
+                border-radius:6px;
+                font-size:13px;
+                box-shadow:10px 10px 40px -14px #000}
+            span{
+                margin:0 5px 0 15px}
+                .required {
+  color: red;
+}
+
+    </style>
  
 
 <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
 
-<form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+    <div class="header">
+        <img src="{!$Resource.real_estate_logo}" style="width: 100px; margin: 20px"/>
+    </div> 
+                    
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="form" id="form">
+        
+                <h2>CONTACT US</h2>
+        <p type="Name:"><input  id="first_name" maxlength="40" placeholder="Write your first name here.." name="first_name" size="20" type="text"/></p>
+        <p type="Last Name:"><abbr class="required"> *</abbr><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Write your last name here.." required="required" /></p>
+        <p type="Email:"><abbr class="required"> *</abbr><input id="email" maxlength="80" placeholder="Let us know how to contact you back.." name="email" size="20" type="text" required="required" /></p>
+        <p type="Phone:"><input id="phone" maxlength="40" placeholder="Let us know how to contact you back.." name="phone" size="20" type="text" /></p>
+        <p type="Product Interest:"><abbr class="required"> *</abbr>
+            <select id="00N7Q00000DXaY9" name="00N7Q00000DXaY9" title="Product Interest" required="true">
+            <option value="">--None--</option>
+            <option value="Business Premises">Business Premises</option>
+            <option value="Flats">Flats</option>
+            <option value="Apartments">Apartments</option>
+            </select>
+            </p>
+            <p type="Company:" id="companyC" style="display: none"><abbr class="required"> *</abbr><input  id="company" maxlength="40" placeholder="Tell us about your company.." name="company" size="20" type="text" required="required" /></p>
+        
 
-<input type="hidden" name="oid" value="00D7Q000008MFu2"/>
-<input type="hidden" name="retURL" value="http://"/>
+                <input type="hidden" name="oid" value="00D7Q000008MFu2"/>
+                <input type="hidden" name="retURL" value="https://britenet-16a-dev-ed.my.salesforce-sites.com/consumers?success=true"/> 
+                            
+                <input type="hidden" name="recordType" id="recordType" value="XXXXXXXXXXXXXXX"/>
+
+                <button id="submitButton" onclick="validateInputs()">Send</button>
+                        
+                <div class="footer">
+                    <span class="fa fa-phone"></span>001 1023 567
+                    <span class="fa fa-envelope-o"></span> contact@company.com
+                </div>
+        </form>
+
+<script>
+    (function () {
+  document.getElementById("companyC").style.display = "none";
+})();
+
+const selectElement = document.getElementById("00N7Q00000DXaY9");
+
+selectElement.addEventListener('change', (event) => {
+  if (event.target.value == 'Business Premises') {
+    document.getElementById("company").value = "";
+    document.getElementById("company").required = "required";
+    document.getElementById("companyC").style.display = "block";
+    document.getElementById("form").style.height = "570px";
+    document.getElementById("recordType").value = '0127Q000000EsLo';
+    console.log(document.getElementById("recordType").value);
+
+    
+  }
+  else if (event.target.value == 'Flats' || event.target.value == 'Apartments') {
+    document.getElementById("companyC").style.display = "none";
+    document.getElementById("company").required = "";
+    document.getElementById("form").style.height = "500px";
+    document.getElementById("recordType").value = '0127Q000000EsLy';
+    console.log(document.getElementById("recordType").value);
+  }
+});
+
+function validateInputs(){
+    
+}
+
+function submitForm() {
+      document.getElementById("form").submit();
+    }
 
 
-<label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br></br>
-
-<label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br></br>
-
-<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br></br>
-
-<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br></br>
-
-Product Interest:<select  id="00N7Q00000DXaY9" name="00N7Q00000DXaY9" title="Product Interest">
-<option value="">--None--</option>
-<option value="Business Premises">Business Premises</option>
-<option value="Flats">Flats</option>
-<option value="Apartments">Apartments</option>
-</select><br></br>
-
-<label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br></br>
-
-<input type="hidden" name="recordType" id="recordType" value="XXXXXXXXXXXXXXX"/>
-
-<input type="submit" name="submit"/>
-
-</form>
-
-
+</script>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
 </apex:page>

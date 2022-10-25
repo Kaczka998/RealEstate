@@ -15,14 +15,9 @@
                 <label>Business Premises</label>
             </value>
             <value>
-                <fullName>Flats</fullName>
+                <fullName>Flats_And_Apartments</fullName>
                 <default>false</default>
-                <label>Flats</label>
-            </value>
-            <value>
-                <fullName>Apartments</fullName>
-                <default>false</default>
-                <label>Apartments</label>
+                <label>Flats And Apartments</label>
             </value>
         </valueSetDefinition>
     </valueSet>
