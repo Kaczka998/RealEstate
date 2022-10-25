@@ -11,8 +11,28 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
+		<members>Real_Estate_Company</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>Lead.CurrentGenerators__c</members>
+		<members>Lead.NumberofLocations__c</members>
+		<members>Lead.Primary__c</members>
+		<members>Lead.ProductInterest__c</members>
+		<members>Lead.SICCode__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>Lead</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
 		<members>*</members>
 		<name>CustomSite</name>
+	</types>
+	<types>
+		<members>Schedule_lead_meeting</members>
+		<name>Flow</name>
 	</types>
 	<version>55.0</version>
 </Package>
