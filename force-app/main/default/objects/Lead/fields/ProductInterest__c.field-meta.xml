@@ -10,19 +10,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>GC1000 series</fullName>
+                <fullName>Business Premises</fullName>
                 <default>false</default>
-                <label>GC1000 series</label>
+                <label>Business Premises</label>
             </value>
             <value>
-                <fullName>GC5000 series</fullName>
+                <fullName>Flats</fullName>
                 <default>false</default>
-                <label>GC5000 series</label>
+                <label>Flats</label>
             </value>
             <value>
-                <fullName>GC3000 series</fullName>
+                <fullName>Apartments</fullName>
                 <default>false</default>
-                <label>GC3000 series</label>
+                <label>Apartments</label>
             </value>
         </valueSetDefinition>
     </valueSet>
