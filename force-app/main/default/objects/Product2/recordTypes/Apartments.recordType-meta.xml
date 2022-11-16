@@ -4,6 +4,40 @@
     <active>true</active>
     <label>Apartments</label>
     <picklistValues>
+        <picklist>Additional__c</picklist>
+        <values>
+            <fullName>Callboxes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conference_Room</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Bathroom__c</picklist>
+        <values>
+            <fullName>Bath</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hydro Massage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jacuzzi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sauna</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shower</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Family</picklist>
         <values>
             <fullName>None</fullName>
@@ -14,6 +48,17 @@
         <picklist>QuantityUnitOfMeasure</picklist>
         <values>
             <fullName>Each</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Toilet__c</picklist>
+        <values>
+            <fullName>Internal toilet</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Shared toilet</fullName>
             <default>false</default>
         </values>
     </picklistValues>

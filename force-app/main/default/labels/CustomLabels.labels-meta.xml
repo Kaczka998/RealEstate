@@ -245,4 +245,242 @@
         <shortDescription>RE_PriceNotChanged</shortDescription>
         <value>Price has not been successfully changed.</value>
     </labels>
+    <labels>
+        <fullName>RE_AddSelected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_AddSelected</shortDescription>
+        <value>Add Selected</value>
+    </labels>
+    <labels>
+        <fullName>RE_Additional</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Additional</shortDescription>
+        <value>Additional</value>
+    </labels>
+    <labels>
+        <fullName>RE_All</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_All</shortDescription>
+        <value>All</value>
+    </labels>
+    <labels>
+        <fullName>RE_ApexLackDataError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ApexLackDataError</shortDescription>
+        <value>Error due to required data not provided.</value>
+    </labels>
+    <labels>
+        <fullName>RE_Bathroom</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Bathroom</shortDescription>
+        <value>Bathroom</value>
+    </labels>
+    <labels>
+        <fullName>RE_Clear</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Clear</shortDescription>
+        <value>Clear</value>
+    </labels>
+    <labels>
+        <fullName>RE_EnterLocation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_EnterLocation</shortDescription>
+        <value>Enter Location</value>
+    </labels>
+    <labels>
+        <fullName>RE_EnterPropName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_EnterPropName</shortDescription>
+        <value>Enter Property Name To Search</value>
+    </labels>
+    <labels>
+        <fullName>RE_Facilities</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Facilities</shortDescription>
+        <value>Facilities For Disabled</value>
+    </labels>
+    <labels>
+        <fullName>RE_FacilitiesHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_FacilitiesHelp</shortDescription>
+        <value>Are there any facilities to make it easier for people with disabilities (f.e. ramp, elevator) ?</value>
+    </labels>
+    <labels>
+        <fullName>RE_FindPropTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_FindPropTitle</shortDescription>
+        <value>Find desired property among our {0} offers.</value>
+    </labels>
+    <labels>
+        <fullName>RE_Furnished</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Furnished</shortDescription>
+        <value>Furnished</value>
+    </labels>
+    <labels>
+        <fullName>RE_GaragingSpaces</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_GaragingSpaces</shortDescription>
+        <value>Garaging Spaces</value>
+    </labels>
+    <labels>
+        <fullName>RE_GaragingSpacesHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_GaragingSpacesHelp</shortDescription>
+        <value>Enter value of minimal garaging spaces needed.</value>
+    </labels>
+    <labels>
+        <fullName>RE_HideFilters</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_HideFilters</shortDescription>
+        <value>Hide Filters</value>
+    </labels>
+    <labels>
+        <fullName>RE_Kitchen</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Kitchen</shortDescription>
+        <value>Kitchen</value>
+    </labels>
+    <labels>
+        <fullName>RE_KitchenHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_KitchenHelp</shortDescription>
+        <value>Is there a kitchen or kithenete?</value>
+    </labels>
+    <labels>
+        <fullName>RE_NoRecords</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_NoRecords</shortDescription>
+        <value>No records found for given parameters.</value>
+    </labels>
+    <labels>
+        <fullName>RE_ParkingSpaces</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ParkingSpaces</shortDescription>
+        <value>Parking Spaces</value>
+    </labels>
+    <labels>
+        <fullName>RE_ParkingSpacesHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ParkingSpacesHelp</shortDescription>
+        <value>Enter value of minimal parking spaces needed.</value>
+    </labels>
+    <labels>
+        <fullName>RE_PricebookCreated</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PricebookCreated</shortDescription>
+        <value>Pricebook has been successfully created.</value>
+    </labels>
+    <labels>
+        <fullName>RE_PricebookEdited</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PricebookEdited</shortDescription>
+        <value>Pricebook has been successfully edited.</value>
+    </labels>
+    <labels>
+        <fullName>RE_PricebookNotCreated</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PricebookNotCreated</shortDescription>
+        <value>Pricebook has not been successfully created.</value>
+    </labels>
+    <labels>
+        <fullName>RE_PricebookNotEdited</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PricebookNotEdited</shortDescription>
+        <value>Pricebook has not been edited.</value>
+    </labels>
+    <labels>
+        <fullName>RE_PropertyAreaMax</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PropertyAreaMax</shortDescription>
+        <value>Property Area Max</value>
+    </labels>
+    <labels>
+        <fullName>RE_PropertyAreaMin</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_PropertyAreaMin</shortDescription>
+        <value>Property Area Min</value>
+    </labels>
+    <labels>
+        <fullName>RE_RecordType</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_RecordType</shortDescription>
+        <value>Real Estate Type</value>
+    </labels>
+    <labels>
+        <fullName>RE_Rooms</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Rooms</shortDescription>
+        <value>Rooms</value>
+    </labels>
+    <labels>
+        <fullName>RE_RoomsHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_RoomsHelp</shortDescription>
+        <value>Enter minimal number of rooms needed.</value>
+    </labels>
+    <labels>
+        <fullName>RE_Search</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>RE_ShowFilters</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ShowFilters</shortDescription>
+        <value>Show Filters</value>
+    </labels>
+    <labels>
+        <fullName>RE_SwimmingPool</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_SwimmingPool</shortDescription>
+        <value>Swimming Pool</value>
+    </labels>
+    <labels>
+        <fullName>RE_SwimmingPoolHelp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_SwimmingPoolHelp</shortDescription>
+        <value>Is there a swimming pool?</value>
+    </labels>
+    <labels>
+        <fullName>RE_Toilet</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Toilet</shortDescription>
+        <value>Toilet</value>
+    </labels>
 </CustomLabels>
