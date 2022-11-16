@@ -41,6 +41,12 @@
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>ContentVersion.Product__c</members>
+		<members>Pricebook2.End_Date__c</members>
+		<members>Pricebook2.Start_Date__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
 		<members>RE_Active</members>
 		<members>RE_AddProducts</members>
 		<members>RE_Apartments</members>
@@ -82,6 +88,7 @@
 		<members>ContentVersion</members>
 		<members>Lead</members>
 		<members>Pricebook2</members>
+		<members>PricebookEntry</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
