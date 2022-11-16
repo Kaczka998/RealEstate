@@ -19,22 +19,48 @@
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>RE_Active</members>
+		<members>RE_AddProducts</members>
+		<members>RE_Apartments</members>
+		<members>RE_AvailableProducts</members>
+		<members>RE_Business_Premises</members>
+		<members>RE_Cancel</members>
+		<members>RE_CancelAddProducts</members>
+		<members>RE_CancelEditDetails</members>
+		<members>RE_Delete</members>
+		<members>RE_DeleteSelected</members>
+		<members>RE_Description</members>
+		<members>RE_Details</members>
+		<members>RE_Discount</members>
+		<members>RE_Edit</members>
+		<members>RE_EndDate</members>
+		<members>RE_Error</members>
+		<members>RE_Increment</members>
+		<members>RE_InputPlaceholder</members>
+		<members>RE_Name</members>
+		<members>RE_New</members>
+		<members>RE_Price</members>
+		<members>RE_PriceChanged</members>
+		<members>RE_PriceNotChanged</members>
+		<members>RE_Pricebook</members>
+		<members>RE_PricebookDeleted</members>
+		<members>RE_PricebookNotDeleted</members>
+		<members>RE_Pricebooks</members>
+		<members>RE_Product</members>
+		<members>RE_Products</members>
+		<members>RE_ProductsAdded</members>
+		<members>RE_ProductsInPricebook</members>
+		<members>RE_ProductsNotAdded</members>
+		<members>RE_Save</members>
+		<members>RE_StartDate</members>
+		<members>RE_Success</members>
+		<name>CustomLabel</name>
+	</types>
+	<types>
+		<members>ContentVersion</members>
 		<members>Lead</members>
+		<members>Pricebook2</members>
 		<name>CustomObject</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomSite</name>
-	</types>
-	<types>
-		<members>Lead_Record_Page</members>
-		<members>Real_Estate_Company</members>
-		<members>Real_Estate_Company_UtilityBar</members>
-		<name>FlexiPage</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Flow</name>
 	</types>
 	<version>55.0</version>
 </Package>

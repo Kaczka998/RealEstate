@@ -1,0 +1,81 @@
+<template>
+  <template if:true={showModal}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open"
+    >
+    <div class="slds-modal__container">
+      <header class="slds-modal__header">
+        <lightning-button-icon
+          class="slds-modal__close"
+          title="Close"
+          icon-name="utility:close"
+          icon-class="slds-button_icon-inverse"
+          onclick={closeModal}
+        ></lightning-button-icon>
+        <h2 id="id-of-modalheader-h2" class="slds-text-heading_large">
+          {label.RE_Pricebook} {label.RE_Details}
+        </h2>
+      </header>
+    <div class="slds-modal__content" id="modal-content-id-1">
+      <lightning-layout>
+        <lightning-layout-item flexibility="auto">
+          <article class="slds-card">
+            <div
+              class="slds-card__body slds-card__body_inner"
+              style="margin: 0"
+            >
+            <template if:true={showEdit}>
+              <lightning-record-edit-form
+                record-id={getIdFromParent}
+                object-api-name="Pricebook2"
+              >
+                <div class="slds-box slds-theme_default">
+                  <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                      <span><lightning-output-field field-name="Name"></lightning-output-field></span>
+                    </div>
+                    <div class="slds-col">
+                      <span><lightning-output-field field-name="Description"></lightning-output-field></span>
+                    </div>
+                    <div class="slds-col">
+                      <span><lightning-output-field field-name="Start_Date__c"></lightning-output-field></span>
+                    </div>
+                    <div class="slds-col">
+                      <span><lightning-output-field field-name="End_Date__c"></lightning-output-field></span>
+                    </div>
+                    <div class="slds-col">
+                      <span><lightning-output-field field-name="IsActive"></lightning-output-field></span>
+                    </div>
+                </div>
+                          
+                </div>
+              </lightning-record-edit-form>              
+              <c-products-in-pricebook
+                pricebook-id={getIdFromParent}
+              >
+              </c-products-in-pricebook>
+            </template>
+            </div>
+          </article>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+    <footer class="slds-modal__footer slds-grid slds-grid_align-spread">
+      <lightning-button
+        variant="brand-outline"
+        label={label.RE_Cancel}
+        onclick={closeModal}
+        title="Cancel"
+        class="slds-var-m-left_x-small"
+        ></lightning-button>
+    </footer>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+  </template>

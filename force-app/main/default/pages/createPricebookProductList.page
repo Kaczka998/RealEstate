@@ -1,0 +1,40 @@
+<apex:page id="RE_CreatePricebook" controller="RE_PriceBookController">
+    <style type="text/css">
+        .bottom__menu{
+            display: flex;
+            justify-content: space-between;
+            padding-right: 50%;
+        }
+    </style>
+    <apex:form id="form">
+        <apex:actionFunction action="{!invertAll}" name="invert"/>
+        <apex:pagemessages />
+    
+        <apex:pageBlock title="{!$Label.HS_UploadedData}">
+            <apex:pageblocktable id="results" value="{!wrapProductList}" var="wrap" >
+                <apex:column headerValue="{!$Label.HS_Import}" rendered="{!IF( wrapProductList != null && wrapProductList.size>0 , true, false)}">
+                    <apex:inputCheckbox value="{!wrap.selected}" title="{!$Label.HS_IncludeImport}"/>
+                </apex:column>
+                <apex:column value="{!wrap.product.Name}" headerValue="{!$Label.HS_DoctorFirstName}"/>
+                <apex:column value="{!wrap.product.RecordTypeId}" headerValue="{!$Label.HS_Lastname}"/>
+                <!-- <apex:column>
+                    <apex:commandLink target="_blank" value="{!$Label.HS_View}" action="/{!wrap.doctor.Id}/d" rendered="{!wrap.status=='Success'}"/>
+                    <apex:commandLink target="_blank" value="{!$Label.HS_View}" action="/{!wrap.actionId}/d" rendered="{!wrap.status=='Duplicate found'}"/>
+                </apex:column> -->
+            </apex:pageblocktable>
+        </apex:pageBlock>
+        <apex:pageBlock id="operations" rendered="{! IF( wrapProductList != null && wrapProductList.size>0 , true, false)}" >
+            <apex:actionRegion>
+                <div class="bottom__menu">
+                    <div>
+            <apex:commandButton value="{!$Label.HS_SelectAll}" action="{!selectAll}" reRender="form"/>
+            <apex:commandButton value="{!$Label.HS_DeselectAll}" action="{!deselectAll}" reRender="form"/>
+            <apex:commandButton value="{!$Label.HS_InvertAll}" onClick="invert()" reRender="form"/>
+                    </div>
+            <apex:inputText value="{!pricebookTitle}" label="PriceBook Title" id="pricebookTitle" required="required"/>
+            <apex:commandButton value="Create Pricebook" action="{!createPricebook}" reRender="form"/>
+                </div>
+            </apex:actionRegion>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

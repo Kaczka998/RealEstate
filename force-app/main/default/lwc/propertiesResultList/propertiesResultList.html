@@ -1,0 +1,17 @@
+<template>
+    <div class="container">
+        <lightning-layout>
+            <template for:each={propertyList} for:item="p">
+                <c-property-result-list-tile 
+                    key={p.Id} 
+                    product={p}
+                    product-id={p.Id}
+                >
+                </c-property-result-list-tile>
+            </template>
+        </lightning-layout>
+        <template if:true={propertyList}>
+            <div style="width: 300px;"></div>
+        </template>       
+    </div>
+</template>

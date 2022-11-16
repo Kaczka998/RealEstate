@@ -1,0 +1,17 @@
+.slds-card__header.slds-grid {
+    display: none;
+}
+
+.inputsContainer{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.inputsRightContainer, .inputsLeftContainer{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 280px;
+}
+
