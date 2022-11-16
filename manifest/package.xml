@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>ICL_ContentVersionTrigger</members>
+		<members>PricebookManagerController</members>
+		<members>RE_ActivatePricebook</members>
+		<members>RE_ContentVersionService</members>
+		<members>RE_ContentVersionTriggerDispatcher</members>
+		<members>RE_ContentVersionTriggerHandler</members>
+		<members>RE_QuoteAfterInsertTriggerHandler</members>
+		<members>RE_SearchEngineController</members>
+		<members>RE_VisualforceQuoteTempController</members>
+		<members>RE_photoGalleryController</members>
+		<members>RE_productController</members>
+		<members>RE_quoteEmailTemplate</members>
+		<members>RE_setDefaultController</members>
 		<members>WebToLeadController</members>
 		<name>ApexClass</name>
 	</types>
@@ -9,6 +22,11 @@
 		<members>Thank_you_page</members>
 		<members>Web_To_Lead</members>
 		<name>ApexPage</name>
+	</types>
+	<types>
+		<members>ProductPictureContrntVersionTrigger</members>
+		<members>RE_QuoteAfterInsert</members>
+		<name>ApexTrigger</name>
 	</types>
 	<types>
 		<members>EditableRealEstateLogoDesignPNGTran</members>
@@ -66,6 +84,27 @@
 		<members>Find_Property</members>
 		<members>Price_Book_Manager</members>
 		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>defaultPhoto</members>
+		<members>filePreview</members>
+		<members>filePreviewCard</members>
+		<members>filePreviewModal</members>
+		<members>piriceBookManager</members>
+		<members>pricebookDetailsModal</members>
+		<members>pricebookEditModal</members>
+		<members>pricebookNewModal</members>
+		<members>pricebookProductList</members>
+		<members>productMap</members>
+		<members>productPriceBook</members>
+		<members>productsInPricebook</members>
+		<members>productsInPricebookListEdit</members>
+		<members>propertiesResultList</members>
+		<members>propertiesSearchB</members>
+		<members>propertiesSearchC</members>
+		<members>propertiesSearchEngine</members>
+		<members>propertyResultListTile</members>
+		<name>LightningComponentBundle</name>
 	</types>
 	<version>55.0</version>
 </Package>

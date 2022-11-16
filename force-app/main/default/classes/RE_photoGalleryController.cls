@@ -1,4 +1,4 @@
-   public with sharing class RE_photoGalleryController{
+public with sharing class RE_photoGalleryController{
         @AuraEnabled(cacheable=true)
             public static List<ContentVersion> getVersionFiles(String recordId){
                 try{
@@ -66,5 +66,3 @@
         }
 }
 }
-    
-    
