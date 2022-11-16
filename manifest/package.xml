@@ -62,5 +62,10 @@
 		<members>Pricebook2</members>
 		<name>CustomObject</name>
 	</types>
+	<types>
+		<members>Find_Property</members>
+		<members>Price_Book_Manager</members>
+		<name>CustomTab</name>
+	</types>
 	<version>55.0</version>
 </Package>
