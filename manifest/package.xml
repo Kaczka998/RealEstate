@@ -18,6 +18,10 @@
 		<name>ApexClass</name>
 	</types>
 	<types>
+		<members>RE_quotePDFEmailTemp</members>
+		<name>ApexComponent</name>
+	</types>
+	<types>
 		<members>Lead_Inbound_Form</members>
 		<members>Thank_you_page</members>
 		<members>Web_To_Lead</members>
@@ -84,6 +88,14 @@
 		<members>Find_Property</members>
 		<members>Price_Book_Manager</members>
 		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>unfiled$public/QuoteEmailTemplate</members>
+		<name>EmailTemplate</name>
+	</types>
+	<types>
+		<members>Send_Email_Quote</members>
+		<name>Flow</name>
 	</types>
 	<types>
 		<members>defaultPhoto</members>

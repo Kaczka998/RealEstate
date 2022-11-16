@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>55.0</apiVersion>
-    <label>RE_quotePDFEmailTemp</label>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>QuoteEmailTemplate</name>
     <packageVersions>
         <majorNumber>2</majorNumber>
         <minorNumber>6</minorNumber>
@@ -12,4 +14,7 @@
         <minorNumber>7</minorNumber>
         <namespace>sf_com_apps</namespace>
     </packageVersions>
-</ApexComponent>
+    <style>none</style>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
