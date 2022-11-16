@@ -98,6 +98,17 @@
 		<name>Flow</name>
 	</types>
 	<types>
+		<members>Account-Account Layout</members>
+		<members>Lead-Lead Layout</members>
+		<members>Lead-Lead New Or Research</members>
+		<members>Opportunity-OppoetunityB2C</members>
+		<members>Opportunity-Opportunity Layout</members>
+		<members>Product2-ApartmentPageLayout</members>
+		<members>Product2-PremisePageLayout</members>
+		<members>Product2-Product Layout</members>
+		<name>Layout</name>
+	</types>
+	<types>
 		<members>defaultPhoto</members>
 		<members>filePreview</members>
 		<members>filePreviewCard</members>
@@ -117,6 +128,18 @@
 		<members>propertiesSearchEngine</members>
 		<members>propertyResultListTile</members>
 		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>Account.Business_Account</members>
+		<members>Account.Business_Account</members>
+		<members>Account.Personal_Account</members>
+		<members>Lead.B2B</members>
+		<members>Lead.B2C</members>
+		<members>Opportunity.B2B</members>
+		<members>Opportunity.B2C</members>
+		<members>Product2.Apartments</members>
+		<members>Product2.Business_Premises</members>
+		<name>RecordType</name>
 	</types>
 	<version>55.0</version>
 </Package>
