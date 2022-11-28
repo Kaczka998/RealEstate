@@ -1,4 +1,4 @@
-public class RE_SearchEngineController {
+public with sharing class RE_SearchEngineController {
     
     public class PropertyWrapper
     {
@@ -46,6 +46,11 @@ public class RE_SearchEngineController {
             system.debug(query);
 
                 List<Product2> prodLst = Database.query(query);
+                for(Product2 p:prodLst){
+                    if(p.DisplayUrl==null){
+                        p.DisplayUrl = '/resource/1669234517000/RE_NoImage';
+                    }
+                }
 
             if(prodLst.isEmpty()) {
                 throw new AuraHandledException('No Record Found..');

@@ -1,0 +1,264 @@
+<template>
+    <template if:false={isMobile}>
+    <lightning-card title={productsCount}>
+        <lightning-layout multiple-rows="true" vertical-align="end" style="margin: 0 20px;">
+            <lightning-layout-item size="4" padding="around-small">
+                 <!--Input text to Search Account-->
+                <lightning-input type="text" label={label.RE_EnterPropName}
+                    value={searchKey} 
+                    onchange={handelSearchKey}> 
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" padding="around-small">
+                <!--Input text to Search Account-->
+               <lightning-input type="text" label={label.RE_EnterLocation}
+                   value={searchCity} 
+                   onchange={handelSearchCity}> 
+               </lightning-input>
+           </lightning-layout-item>
+           <lightning-layout-item size="6"></lightning-layout-item>
+            <!-- <lightning-layout-item size="4" padding="around-small"></lightning-layout-item>     -->
+            <template if:false={filters}>
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_ShowFilters} variant="brand-outline" onclick={handelShowFilters}></lightning-button>            
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_Clear} variant="brand-outline" onclick={handelClear}></lightning-button>            
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_Search} variant="brand" onclick={SearchHandler}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="7"></lightning-layout-item>
+            </template>                      
+            <template if:true={filters}>
+                <lightning-layout-item size="2" padding="around-small">
+                    <!--Search Button-->
+                    <lightning-input type="number" label={label.RE_PropertyAreaMin}
+                        value={areaMin} 
+                        onchange={handelAreaMin}> 
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-input type="number" label={label.RE_PropertyAreaMax}
+                        value={areaMax} 
+                        onchange={handelAreaMax}> 
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-input type="number" max-length=2 label={label.RE_GaragingSpaces} field-level-help={label.RE_GaragingSpacesHelp}
+                        value={garageMin} 
+                        onchange={handelGarageMin}> 
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small"></lightning-layout-item>
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-combobox
+                        name="bathroom"
+                        label={label.RE_Bathroom}
+                        value={bathroom}
+                        onchange={handleChange}
+                        options={bathroomOptions}
+                    >
+                    </lightning-combobox>
+                    <template for:each={allValues} for:item="val">
+                        <lightning-pill key={val} label={val} name={val} onremove={handleRemove}></lightning-pill>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size="1" padding="around-small">
+                    <lightning-input type="number" label={label.RE_Rooms} field-level-help={label.RE_RoomsHelp}
+                        value={noRooms} 
+                        onchange={handelNoRooms}> 
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="around-small">
+                    <lightning-input type="checkbox" label={label.RE_SwimmingPool}
+                    value={isSwimming} 
+                    onchange={handelIsSwimming}> 
+                </lightning-input>
+                <lightning-input type="checkbox" label={label.RE_Furnished}
+                    value={isFurnished} 
+                    onchange={handelIsFurnished}> 
+                </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="7" padding="around-small"></lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_HideFilters} variant="brand-outline" onclick={handelHideFilters}></lightning-button>            
+                </lightning-layout-item>  
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_Clear} variant="brand-outline" onclick={handelClear}></lightning-button>            
+                </lightning-layout-item>  
+                <lightning-layout-item padding="around-small">
+                    <!--Search Button-->
+                    <lightning-button label={label.RE_Search} variant="brand" onclick={SearchHandler}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="7"></lightning-layout-item>
+            </template>  
+
+
+
+                <!--List Of Account Using data Tabel-->
+                <!-- <lightning-datatable key-field="id" data={propertyList} columns ={cols}> 
+
+                </lightning-datatable> -->
+                 <lightning-spinner if:true={isLoading}>
+                </lightning-spinner>
+                <template if:true={propertyList}>
+                    <c-properties-result-list
+                    property-list={propertyList}
+                    >
+                    </c-properties-result-list>
+                    <div style="width: 100%; display:flex; justify-content: center;">
+                        <lightning-button-group>
+                            <lightning-button label="&#x00AB;" onclick={first}></lightning-button>
+                            <lightning-button label="&lt;" onclick={previous}></lightning-button>
+                            <div style="width:fit-content; padding-left: 8px; padding-right: 8px;" class="slds-box slds-box_xx-small">{pageNumber}</div>                 
+                            <lightning-button label="&gt;" onclick={next}></lightning-button>
+                            <lightning-button label="&#x00BB;" onclick={last}></lightning-button>
+                        </lightning-button-group> 
+                    </div>
+                </template>  
+                <template if:false={propertyList}>
+                    {label.RE_NoRecords}
+                </template>      
+
+        </lightning-layout>
+    </lightning-card>
+</template>
+
+<template if:true={isMobile}>
+    <lightning-card>
+        <div class="title slds-p-around_small">{productsCount}</div>
+        <div class="slds-grid slds-gutters slds-p-around_small">
+            <div class="slds-col slds-size_2-of-3">
+              <span><lightning-input type="text" label={label.RE_EnterPropName}
+                value={searchKey} 
+                onchange={handelSearchKey}> 
+            </lightning-input></span>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+              <span><lightning-input type="text" label={label.RE_EnterLocation}
+                value={searchCity} 
+                onchange={handelSearchCity}> 
+            </lightning-input></span>
+            </div>
+          </div>
+          <template if:false={filters}>
+            <div style="padding: 2vw;">
+            <div class="slds-grid slds-gutters slds-p-around_small">
+                <div class="slds-col">
+                  <span> <lightning-button label={label.RE_ShowFilters} variant="brand-outline" onclick={handelShowFilters}></lightning-button>           </span>
+                </div>
+                <div class="slds-col">
+                    <span><lightning-button label={label.RE_Clear} variant="brand-outline" onclick={handelClear}></lightning-button>   </span>
+                  </div>
+                <div class="slds-col">
+                  <span><lightning-button label={label.RE_Search} variant="brand" onclick={SearchHandler}></lightning-button></span>
+                </div>
+              </div>
+              </div>
+          </template>
+          <template if:true={filters}>
+            <div style="padding: 2vw;">
+            <div class="slds-grid slds-gutters slds-p-around_small">
+                <div class="slds-col" style="margin-top: auto;">
+                  <span>  <lightning-input type="number" label={label.RE_PropertyAreaMin}
+                    value={areaMin} 
+                    onchange={handelAreaMin}> 
+                </lightning-input></span>
+                </div>
+                <div class="slds-col" style="margin-top: auto;">
+                  <span> <lightning-input type="number" label={label.RE_PropertyAreaMax}
+                    value={areaMax} 
+                    onchange={handelAreaMax}> 
+                </lightning-input></span>
+                </div>
+                <div class="slds-col">
+                    <span><lightning-input type="number" max-length=2 label={label.RE_GaragingSpaces} field-level-help={label.RE_GaragingSpacesHelp}
+                        value={garageMin} 
+                        onchange={handelGarageMin}> 
+                    </lightning-input></span>
+                  </div>
+              </div>
+              <div class="slds-grid slds-gutters slds-p-around_small">
+                <div class="slds-col">
+                  <span> <lightning-combobox
+                    name="bathroom"
+                    label={label.RE_Bathroom}
+                    value={bathroom}
+                    onchange={handleChange}
+                    options={bathroomOptions}
+                >
+                </lightning-combobox>
+                <template for:each={allValues} for:item="val">
+                    <lightning-pill key={val} label={val} name={val} onremove={handleRemove}></lightning-pill>
+                </template></span>
+                </div>
+                <div class="slds-col">
+                  <span> <lightning-input type="number" label={label.RE_Rooms} field-level-help={label.RE_RoomsHelp}
+                    value={noRooms} 
+                    onchange={handelNoRooms}> 
+                </lightning-input></span>
+                </div>
+              </div>
+              <div class="slds-grid slds-gutters slds-p-around_small">
+                <div class="slds-col">
+                  <span> <lightning-input type="checkbox" label={label.RE_SwimmingPool}
+                    value={isSwimming} 
+                    onchange={handelIsSwimming}> 
+                </lightning-input></span>
+                </div>
+                <div class="slds-col">
+                  <span><lightning-input type="checkbox" label={label.RE_Furnished}
+                    value={isFurnished} 
+                    onchange={handelIsFurnished}> 
+                </lightning-input></span>
+                </div>
+              </div>
+              <div class="slds-grid slds-gutters slds-p-around_small">
+                <div class="slds-col">
+                  <span> <lightning-button label={label.RE_HideFilters} variant="brand-outline" onclick={handelHideFilters}></lightning-button> </span>
+                </div>
+                <div class="slds-col">
+                    <span><lightning-button label={label.RE_Clear} variant="brand-outline" onclick={handelClear}></lightning-button>   </span>
+                  </div>
+                <div class="slds-col">
+                  <span><lightning-button label={label.RE_Search} variant="brand" onclick={SearchHandler}></lightning-button></span>
+                </div>
+              </div>
+            </div>
+          </template>
+
+                <!--List Of Account Using data Tabel-->
+                <!-- <lightning-datatable key-field="id" data={propertyList} columns ={cols}> 
+
+                </lightning-datatable> -->
+                 <lightning-spinner if:true={isLoading}>
+                </lightning-spinner>
+                <template if:true={propertyList}>
+                    <div style="width: 100%; padding-left: 12vw;">
+                    <c-properties-result-list
+                    property-list={propertyList}
+                    >
+                    </c-properties-result-list>
+                    </div>
+                    <div style="width: 100%; display:flex; justify-content: center;">
+                        <lightning-button-group>
+                            <lightning-button label="&#x00AB;" onclick={first}></lightning-button>
+                            <lightning-button label="&lt;" onclick={previous}></lightning-button>
+                            <div style="width:fit-content; padding-left: 8px; padding-right: 8px;" class="slds-box slds-box_xx-small">{pageNumber}</div>                 
+                            <lightning-button label="&gt;" onclick={next}></lightning-button>
+                            <lightning-button label="&#x00BB;" onclick={last}></lightning-button>
+                        </lightning-button-group> 
+                    </div>
+                </template>  
+                <template if:false={propertyList}>
+                    {label.RE_NoRecords}
+                </template>      
+    </lightning-card>
+</template>
+</template>

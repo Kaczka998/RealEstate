@@ -4,21 +4,23 @@
     <apex:attribute name="Quote" description="This is the value for the quote."
     type="Quote" assignTo="{!quoteObj}"/>
 
-    <body style="background-image: url('https://www.mandglawgroup.com/wp-content/uploads/2020/05/Everything-You-Need-to-Know-About-Save-Our-Home-AZ-SOHAZ-1980x1114.jpeg');background-repeat: no-repeat;background-position: center top;background-color: transparent;background-size: cover;">
+    <body style="background-image: url('https://real-estate-app-dev-ed.file.force.com/servlet/servlet.ImageServer?id=0157Q0000001tfZ&oid=00D7Q000008MFu2&lastMod=1668685187000');background-repeat: no-repeat;background-position: center top;background-color: transparent;background-size: cover;">
         <div style=";width:70%; margin-left:15%; background-color: transparent;">
-            <img src="https://media-exp1.licdn.com/dms/image/C511BAQH84qH6saHIJA/company-background_10000/0/1575786967662?e=2147483647&v=beta&t=aVLApaXRBc1KGVn2im4kGtPaW2M5omE1nq4agv4vM54" style="width:100%;"/>
+            <img src="https://real-estate-app-dev-ed.file.force.com/servlet/servlet.ImageServer?id=0157Q0000001tfP&oid=00D7Q000008MFu2&lastMod=1668680402000" style="width:100%;"/>
         </div>
         <div style="padding: 5%;width:60%;margin-left:15%; background-color: rgba(192,192,192,0.9);">
         <p><span style="font-size: 16px;">Hello {!Quote.Contact.FirstName} {!Quote.Contact.LastName}!</span><br/></p>
-        <p>We are happy to inform you that quote with personalized offer for {!Quote.Account.Name} has been prepared and waits for you in an attached pdf.</p><p><br/></p>
+        <p>We are happy to inform you that quote with personalized offer has been prepared and waits for you in an attached pdf.</p><p><br/></p>
         <table style="width:100%">
             <apex:repeat value="{!quoteItemList}" var="item">
                     <td>
                         <div style="background-color: white;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                        margin-bottom: 25px;">
-                        <img src="{!item.Product2.DisplayUrl}" alt="Product" style="width:100%" height="200"/>
-                        <div style="text-align: center;padding: 10px 20px;display: flex; flex-direction: column; ">
+                        margin-bottom: 25px;
+                        max-width: min(80vw, 244px);
+                        max-height: min(80vw, 264px)">
+                        <img src="{!item.Product2.DisplayUrl}" alt="Product" style="background-image: url('https://real-estate-app-dev-ed.file.force.com/servlet/servlet.ImageServer?id=0157Q0000001tyH&oid=00D7Q000008MFu2&lastMod=1668685187000'); width:100%; height: min(45vw, 200px)"/>
+                        <div style="text-align: center;padding-top: 10px; padding: 10px;display: flex; flex-direction: column; width: 100%;">
                             <apex:outputText value="{!item.Product2.Name}"/><br/> 
                                 
                             <apex:outputText value="${!item.UnitPrice}"/>
@@ -28,7 +30,7 @@
                 </apex:repeat>
         </table>
         <p><br/></p><p>See you soon!</p>
-        <p><em style="font-size: 18px; font-family: verdana;">Real Estate Company</em></p><p><br/></p><p style="text-align: left;"><img src="https://www.seekpng.com/png/full/839-8391535_best-real-estate-logo-real-estate-logo-usa.png" alt="RE_Logo_Small.png" height="150" width="150"/></p>
+        <p><em style="font-size: 18px; font-family: verdana;">Real Estate Company</em></p><p><br/></p><p style="text-align: left;"><img src="https://real-estate-app-dev-ed.file.force.com/servlet/servlet.ImageServer?id=0157Q0000001tfe&oid=00D7Q000008MFu2&lastMod=1668685266000" alt="RE_Logo_Small.png" height="150" width="150"/></p>
         </div>
     </body>
 </apex:component>

@@ -1,0 +1,23 @@
+<template>
+    <template if:true={product.data}>
+        <c-appointment-scheduler
+            record-id={recordId}
+        ></c-appointment-scheduler>
+    <lightning-card> 
+        <lightning-button label="Get Quote" slot="actions" onclick={handleQuote}></lightning-button>
+        <lightning-button label="Schedule Journey" slot="actions" onclick={handleClick}></lightning-button>
+        <div class="slds-p-around_small" style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+            <div style="font-size:xx-large;">
+                    <lightning-icon icon-name="standard:household"></lightning-icon> {name}
+            </div>
+            <div style="font-size:xx-large;">
+                <lightning-icon icon-name="standard:price_book_entries"></lightning-icon><lightning-formatted-number 
+                value={price} 
+                format-style="currency"
+                currency-code="USD"
+                ></lightning-formatted-number>
+            </div>
+        </div>
+    </lightning-card>
+    </template>
+</template>
