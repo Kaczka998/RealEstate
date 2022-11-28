@@ -3,6 +3,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import getProductPrice from '@salesforce/apex/RE_SearchEngineController.getProductPrice';
 import getStandardProductPrice from '@salesforce/apex/RE_SearchEngineController.getStandardProductPrice';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import FORM_FACTOR from '@salesforce/client/formFactor';
 
 import RE_Error from '@salesforce/label/c.RE_Error';
 
@@ -10,7 +11,10 @@ export default class PropertyResultListTile extends NavigationMixin(LightningEle
     @api product;
     @api productId;
     @track price;
+    @track standardPrice;
     @track recordPageUrl;
+    showDetails = false;
+    @track iconname = 'utility:chevrondown';
 
     label={
         RE_Error
@@ -57,5 +61,19 @@ export default class PropertyResultListTile extends NavigationMixin(LightningEle
             }
         }
     }
+
+    get isMobile() {
+        return FORM_FACTOR === 'Small';
+    }
     
+    handleDetails(){
+        if(this.showDetails==false){
+            this.iconname='utility:chevronup';
+            this.showDetails=true;
+        }
+        else if(this.showDetails==true){
+            this.iconname='utility:chevrondown';
+            this.showDetails=false;
+        }
+    }
 }

@@ -29,6 +29,9 @@ public with sharing class RE_photoGalleryController{
         
         Product2 product = [SELECT Id, Name, DisplayUrl FROM Product2 WHERE Id=: pId];
         String productImage = product.DisplayUrl;
+        if(productImage==null){
+            productImage='/resource/1669234517000/RE_NoImage';
+          }
 
         return productImage;
     }
@@ -42,15 +45,19 @@ public with sharing class RE_photoGalleryController{
 
         delete ConDoc; 
     }
-    // @AuraEnabled(cacheable=true)
-    // public static List<ContentDistribution> getUrlsFromContentDistribution(String recordId) {
-    //     List<ContentDistribution> contentDistributions = [
-    //             SELECT Id, Name, DistributionPublicUrl, ContentDownloadUrl, ContentDocumentId, 
-    //             FROM ContentDistribution
-    //             WHERE Name LIKE :recordId
-    //     ];
-    //     return contentDistributions;
-    // }
+    @AuraEnabled(cacheable=true)
+    public static List<ContentDistribution> getUrlsFromContentDistribution(String recordId) {
+        try{
+            List<ContentDistribution> contentDistributions = [
+                    SELECT Id, Name, DistributionPublicUrl, ContentDownloadUrl, ContentDocumentId, CreatedDate
+                    FROM ContentDistribution
+                    WHERE Name LIKE :recordId
+            ];
+            return contentDistributions;
+        }catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     @AuraEnabled
     public static void updateVersions(String recordId){
         try {

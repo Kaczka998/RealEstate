@@ -1,8 +1,12 @@
 <template>
     <lightning-card variant="Narrow" title={mapTitle} icon-name="standard:location">
-        <div class="slds-var-p-around_small">
+        <div class="slds-var-p-around_small" style="width:100%;">
             <template if:true={mapMarkers}>
-                <lightning-map map-markers={mapMarkers} zoom-level="15"></lightning-map>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-map map-markers={mapMarkers} zoom-level="15"></lightning-map>
+                    </div>
+               </div>
             </template>
         </div>
     </lightning-card>

@@ -1,5 +1,7 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import FORM_FACTOR from '@salesforce/client/formFactor';
+
 
 import STREET_FIELD from '@salesforce/schema/Product2.Street__c';
 import CITY_FIELD from '@salesforce/schema/Product2.City__c';
@@ -17,12 +19,23 @@ export default class ProductMap extends LightningElement {
     @track mapMarkers;
     @track mapTitle;
     
+    renderedCallback() {
+        if(FORM_FACTOR === 'Small'){
+        const style = document.createElement('style');
+        style.innerText = `c-product-map .slds-map {
+        min-width: 0 !important;
+        }`;
+        this.template.querySelector('lightning-map').appendChild(style);
+    }
+    }
+
     @wire(getRecord, {
         recordId: '$recordId',
         fields: FIELDS
     })
     fetchAcc({ data, error }) {
         if (data) {
+            console.log(this.recordId);
             this.mapMarkers = [{
                 location: {
                 'City': getFieldValue(data, CITY_FIELD),

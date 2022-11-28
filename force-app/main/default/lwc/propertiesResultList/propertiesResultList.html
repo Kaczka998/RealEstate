@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <lightning-layout>
+        <lightning-layout multiple-rows="true">
             <template for:each={propertyList} for:item="p">
                 <c-property-result-list-tile 
                     key={p.Id} 
