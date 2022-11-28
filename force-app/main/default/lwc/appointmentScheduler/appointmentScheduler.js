@@ -9,20 +9,21 @@ import Id from '@salesforce/user/Id';
 
 import RE_Cancel from "@salesforce/label/c.RE_Cancel";
 import RE_Save from "@salesforce/label/c.RE_Save";
+import RE_Error from "@salesforce/label/c.RE_Error";
 import RE_Schedule from "@salesforce/label/c.RE_Schedule";
 
 export default class AppointmentScheduler extends LightningElement {
     @api recordId;
-    showModal = false;
-    editMode = true;
-    dateValue = '';
     @track hoursValue;
     @track modalHeader='';
-    selectedOption = '';
     @track property = {};
     @track today;
     @track apartmentAgent = '';
     @track displayedHours = [];
+    showModal = false;
+    editMode = true;
+    dateValue = '';
+    selectedOption = ''; 
     userId = Id;
     occupiedHours = [];
     enableSubmit = false;
@@ -30,7 +31,8 @@ export default class AppointmentScheduler extends LightningElement {
     label={
       RE_Cancel,
       RE_Schedule,
-      RE_Save
+      RE_Save,
+      RE_Error
     }
 
     @api show() {
@@ -81,8 +83,13 @@ export default class AppointmentScheduler extends LightningElement {
     return today.toISOString();
   }
 
+   
+  get getHours() {
+    return this.displayedHours;
+  }
+
   connectedCallback(){
-     getAgentInfo({recordId: this.recordId})
+      getAgentInfo({recordId: this.recordId})
       .then((data) => {
         let name = data.FirstName;
         let surname = data.LastName;
@@ -90,34 +97,34 @@ export default class AppointmentScheduler extends LightningElement {
       })
       .catch((error) => {
         const evt = new ShowToastEvent({
-          title: RE_Error_Occured,
+          title: this.label.RE_Error,
           message: error["body"]["message"],
           variant: "error"
         });
         this.dispatchEvent(evt);
       });
-    getModalHeader({recordId: this.recordId})
-    .then(result=>{
-        this.modalHeader=result;
-    })
-    .catch(error => {
-        const toastEvent = new ShowToastEvent({
-            title: this.label.RE_Error,
-            message: error["body"]["message"],
-            variant: "error"
-          });
-            this.dispatchEvent(toastEvent);
-    });
-    getPropertyDetails({recordId: this.recordId})
-    .then(data => {
-      this.property = data;
-      this.error = null;
-    })
-    .catch(error => {
-      this.error = error;
+      getModalHeader({recordId: this.recordId})
+      .then(result=>{
+          this.modalHeader=result;
+      })
+      .catch(error => {
+          const toastEvent = new ShowToastEvent({
+              title: this.label.RE_Error,
+              message: error["body"]["message"],
+              variant: "error"
+            });
+              this.dispatchEvent(toastEvent);
+      });
+      getPropertyDetails({recordId: this.recordId})
+      .then(data => {
+        this.property = data;
+        this.error = null;
+      })
+      .catch(error => {
+        this.error = error;
 
-    }); 
-}
+      }); 
+  }
 
   switchToEditMode(){
     this.editMode=true;
@@ -156,16 +163,12 @@ export default class AppointmentScheduler extends LightningElement {
     }
     this.getOccupiedHours();
   }
-
-  
-  get getHours() {
-    return this.displayedHours;
-  }
   
   handleSave(event){
     createEvent({option: this.selectedOption, selectedDate: this.dateValue, propertyId: this.recordId, customerId: this.userId})
     .then(data => {
       this.error = null;
+      this.showModal = false;
     })
     .catch(error => {
       this.error = error;
@@ -173,56 +176,53 @@ export default class AppointmentScheduler extends LightningElement {
     });
     }
 
-    getOccupiedHours() {
-      this.occupiedHours = [];
-      getEvents({recordId: this.recordId})
-        .then((data) => {  
-          for (let record of data) {
-            if (this.dateValue == record.StartDateTime.split("T")[0]) {
-              for (let h of this.allHours) {
-                if (
-                  record.EndDateTime.split("T")[1]
-                    .replace(":00.000Z", "")
-                    .replace(":", "")
-                    .replace("09", "9") == h.split("-")[1].replace(":", "") &&
-                  record.StartDateTime.split("T")[1]
-                    .replace(":00.000Z", "")
-                    .replace(":", "")
-                    .replace("09", "9") == h.split("-")[0].replace(":", "")
-                ) {
+  getOccupiedHours() {
+    this.occupiedHours = [];
+    getEvents({recordId: this.recordId})
+    .then((data) => {  
+    for (let record of data) {
+      if (this.dateValue == record.StartDateTime.split("T")[0]) {
+        for (let h of this.allHours) {
+          if (
+              record.EndDateTime.split("T")[1]
+              .replace(":00.000Z", "")
+              .replace(":", "")
+              .replace("09", "9") == h.split("-")[1].replace(":", "") &&
+              record.StartDateTime.split("T")[1]
+              .replace(":00.000Z", "")
+              .replace(":", "")
+              .replace("09", "9") == h.split("-")[0].replace(":", "")
+              ) {
                   this.occupiedHours.push(h);
-                }
               }
             }
           }
-  
-          this.filterHours();
-        })
-  
-        .catch((error) => {
-          const evt = new ShowToastEvent({
-            title: RE_Error_Occured,
-            message: error["body"]["message"],
-            variant: "error"
-          });
-          this.dispatchEvent(evt);
-        });
-    }
-
-    filterHours() {
-      let temp = [];
-      for (let h of this.allHours) {
-        let pushHour = true;
-        for (let oHour of this.occupiedHours) {
-          if (oHour == h) {
-            pushHour = false;
-          }
         }
-        if (pushHour) {
-          temp.push({ label: h, value: h });
+      this.filterHours();
+    })
+    .catch((error) => {
+      const evt = new ShowToastEvent({
+        title: this.label.RE_Error,
+        message: error["body"]["message"],
+        variant: "error"
+      });
+      this.dispatchEvent(evt);
+    });
+  }
+
+  filterHours() {
+    let temp = [];
+    for (let h of this.allHours) {
+      let pushHour = true;
+      for (let oHour of this.occupiedHours) {
+        if (oHour == h) {
+          pushHour = false;
         }
       }
-      this.displayedHours = temp;
+      if (pushHour) {
+        temp.push({ label: h, value: h });
+      }
     }
-
-    }
+    this.displayedHours = temp;
+  }
+}

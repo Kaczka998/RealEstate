@@ -19,27 +19,43 @@ public with sharing class RE_quoteEmailTemplate {
     }
 
     public static void sendEmail(Blob pdfBody, String quoteId) {
-        EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'QuoteEmailTemplate'];
-        Quote quote = [SELECT OpportunityId, Name FROM Quote WHERE Id = :quoteId];
-        Opportunity opportunity = [SELECT AccountId FROM Opportunity WHERE Id = :quote.OpportunityId];
-        Contact con = [SELECT Id, Email FROM Contact WHERE AccountId = :opportunity.AccountId LIMIT 1];
-        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        attachment.setContentType('application/pdf');
-        attachment.setFileName(quote.Name);
-        attachment.setBody(pdfBody);
-        mail.setToAddresses(new List<String>{
-                con.Email
-        });
-        mail.setTemplateId(et.Id);
-        mail.setWhatId(quoteId);
-        mail.setTargetObjectId(con.Id);
-        mail.setSaveAsActivity(false);
-        mail.setFileAttachments(new List<Messaging.EmailFileAttachment>{
-                attachment
-        });
-        Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{
-                mail
-        });
+        try{
+            EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'QuoteEmailTemplate'];
+            Quote quote = [SELECT OpportunityId, Name FROM Quote WHERE Id = :quoteId];
+            Opportunity opportunity = [SELECT AccountId FROM Opportunity WHERE Id = :quote.OpportunityId];
+            Contact con = [SELECT Id, Email FROM Contact WHERE AccountId = :opportunity.AccountId LIMIT 1];
+            User u = [SELECT Email, ContactId FROM User WHERE AccountId=:opportunity.AccountId];
+            if(con.Email == null&&u.ContactId==con.Id){
+                con.Email = u.Email;
+                update con;
+            }
+            Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            attachment.setContentType('application/pdf');
+            attachment.setFileName(quote.Name);
+            attachment.setBody(pdfBody);
+            mail.setToAddresses(new List<String>{
+                    u.Email
+            });
+            mail.setTemplateId(et.Id);
+            mail.setWhatId(quoteId);
+            mail.setTargetObjectId(con.Id);
+            mail.setSaveAsActivity(false);
+            mail.setFileAttachments(new List<Messaging.EmailFileAttachment>{
+                    attachment
+            });
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{
+                    mail
+            });
+        }catch(Exception e){
+            Error_Log__c error = new Error_Log__c();
+            error.Exception__c = e.getMessage();
+            TimeZone tz = TimeZone.getTimeZone('Europe/Warsaw');
+            DateTime dt = Datetime.now();
+            dt = dt.addSeconds((tz.getOffset(dt)/1000));
+            error.Created__c = dt;
+            
+            insert error;
+        }
     }
 }
