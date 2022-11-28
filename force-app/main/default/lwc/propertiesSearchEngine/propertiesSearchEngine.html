@@ -1,0 +1,16 @@
+<template>
+    <template if:true={showB}>
+        <c-properties-search-b></c-properties-search-b>
+    </template>
+    <template if:true={showC}>
+        <c-properties-search-c></c-properties-search-c>
+    </template>
+    <template if:true={showEmergency}>
+        <c-properties-search-b
+        products-count={productsCount}
+        ></c-properties-search-b>
+        <c-properties-search-c
+        products-count={productsCount}
+        ></c-properties-search-c>
+    </template>
+</template>

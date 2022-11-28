@@ -1,0 +1,25 @@
+<template>
+    <div class="container">
+        <a href={recordPageUrl} target="_blank" rel="noopener noreferrer">
+            <img class="product-img" src={product.DisplayUrl}></img>
+            <div class="title">
+                <p>Name: {product.Name}</p>
+            </div>
+        
+        <div class="overlay">
+            <div class="text">
+                {product.Name}
+                <p>{product.Description}</p>
+                <p>{product.Street__c}</p>
+                <p>{product.Postal_Code__c} {product.City__c}</p>
+                <p style="margin-top: 10px;"><lightning-formatted-number 
+                    value={price} 
+                    format-style="currency"
+                    currency-code="USD"
+                    ></lightning-formatted-number>
+                </p>
+            </div>
+          </div>
+        </a>
+    </div>
+</template>

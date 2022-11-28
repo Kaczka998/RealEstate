@@ -1,0 +1,35 @@
+<template>
+  <lightning-card>
+    <div style="display:flex; align-items: center; justify-content: space-between;  width: 100%; padding-bottom: 10px;">
+      <div class="slds-align_absolute-center">
+        <lightning-input style="margin-bottom: 15.5px;" placeholder={label.RE_InputPlaceholder} type="number" value={percentValue} onchange={handlePercentChange}></lightning-input>
+        <div style="display: flex; width: 280px; justify-content: space-between; align-items:center; margin-left: 100px">
+            <lightning-button  variant="brand" label={label.RE_Discount} onclick={discount}></lightning-button>
+            <lightning-button  variant="brand-outline" label={label.RE_Increment} onclick={increment}></lightning-button>
+        </div>
+      </div> 
+      <div style="margin-right: 0;">
+        <lightning-button  variant="destructive" label={label.RE_DeleteSelected} onclick={deleteProducts}></lightning-button>
+      </div>
+    </div>
+    <div class="dataContainer slds-p-horizontal_small">
+        <template if:true={products}>
+            <div style="height: 300px">
+                <lightning-datatable
+                key-field="id"
+                data={products}
+                show-row-number-column
+                row-number-offset="0"
+                suppress-bottom-bar
+                columns={columns}
+                onrowaction={handleRowAction}
+                onrowselection={handleSelect}
+                oncellchange={handleSave}
+                draft-values={draftValues}
+                >
+                </lightning-datatable>
+            </div>
+        </template>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,6 @@
+<messaging:emailTemplate subject="Quote with personalized offer" recipientType="Lead" relatedToType="Quote">
+<messaging:htmlEmailBody >
+
+    <c:RE_quotePDFEmailTemp Quote="{!relatedTo}" quoteKey="{!relatedTo.Id}" ></c:RE_quotePDFEmailTemp>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

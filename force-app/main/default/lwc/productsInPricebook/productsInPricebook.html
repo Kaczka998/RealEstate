@@ -1,0 +1,17 @@
+<template>
+    <lightning-card
+    title={label.RE_ProductsInPricebook}
+   >
+      <div class="dataContainer slds-p-horizontal_small">
+          <lightning-datatable
+            key-field="Id"
+            data={products}
+            show-row-number-column
+            row-number-offset="0"
+            columns={columns}
+            hide-checkbox-column="true"
+          >
+          </lightning-datatable>
+        </div>
+        </lightning-card>
+</template>

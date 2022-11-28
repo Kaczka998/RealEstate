@@ -1,0 +1,38 @@
+.container{
+    display: flex;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.leftside{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    margin-right: 1%;
+}
+.rightside{
+    margin-right: 2%;
+    width: 20%;
+}
+.casedt{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    overflow: auto;
+    height: 405px;
+}
+
+.casedt.slds-grid::-webkit-scrollbar-thumb {
+    background-color: #0176d3;
+    outline: none;
+}
+
+.casedt.slds-grid::-webkit-scrollbar-track {
+    background: #0176d30a;
+}
+
+.casedt.slds-grid::-webkit-scrollbar {
+    height: 14px;
+}
