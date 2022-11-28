@@ -207,7 +207,8 @@ export default class PropertiesSearchC extends LightningElement {
     }
  
     last() {
-        this.pageNumber = Math.ceil((this.propertyList.length-4)/5)+1
+        const num = this.productsCount.substring(32, 34);
+        this.pageNumber = Math.ceil(num/5);
         this.updatePage()
         if(this.isMobile){
             window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -11,10 +11,7 @@ public with sharing class RE_QuoteGenerate {
             Database.SaveResult sr =  EventBus.publish(request);
             if (sr.isSuccess()) {
                 System.debug('Successfully published event.');
-                // Get asynchronous operation ID.
-                System.debug(EventBus.getOperationId(sr));
-        
-              
+                System.debug(EventBus.getOperationId(sr));     
             } else {
                 for(Database.Error err : sr.getErrors()) {
                     System.debug('Error returned: ' +
@@ -22,9 +19,7 @@ public with sharing class RE_QuoteGenerate {
                                  ' - ' +
                                  err.getMessage());
                 }
-            }       
-
-           
+            }          
         }
         catch(Exception e){
             throw new AuraHandledException(e.getMessage());
@@ -38,18 +33,17 @@ public with sharing class RE_QuoteGenerate {
                 PricebookEntry entry = [SELECT Id, UnitPrice FROM PricebookEntry WHERE UnitPrice =: price AND Product2Id =: recordId LIMIT 1];
                 id=entry.Id;
         
-           Opportunity newO = new Opportunity();
-           newO.RecordTypeID = '0127Q000000EuW3QAK';
+            Opportunity newO = new Opportunity();
+            newO.RecordTypeID = [SELECT Id FROM RecordType WHERE Name LIKE 'B2C' AND SobjectType = 'Opportunity'].Id;
             newO.OwnerId = product.Apartment_Agent__c;
             String accId = [SELECT AccountId FROM User WHERE Id =: userId].AccountId;
             Account acc = [SELECT RecordTypeID FROM Account WHERE Id =: accId];
-            if(acc.RecordTypeID=='0127Q000000EuYdQAK'){
+            String personAcc = [SELECT Id FROM RecordType WHERE Name LIKE 'Person Acc' AND SobjectType = 'Account'].Id;
+            if(acc.RecordTypeID==personAcc){
                 newO.AccountId = accId;
             }
             newO.Name = product.Name;
             newO.StageName = 'Prospecting';
-            // newO.RecordTypeID = [SELECT ID FROM RecordType WHERE Name LIKE 'B2C_O' LIMIT 1].Id;
-            newO.RecordTypeID = '0127Q000000EuW3';
             newO.CloseDate = Date.today().addDays(1);
     
             insert newO;
@@ -74,7 +68,7 @@ public with sharing class RE_QuoteGenerate {
             generateQuotePDF(newQ.Id, userId);
         }catch(Exception e){
             Error_Log__c error = new Error_Log__c();
-            error.Exception__c = e.getMessage();
+            error.Exception__c = 'generateQuote '+e.getMessage();
             insert error;
         } 
     }
@@ -92,7 +86,7 @@ public with sharing class RE_QuoteGenerate {
             sendQuoteEmail(body, quoteId, userId);
         }catch(Exception e){
             Error_Log__c error = new Error_Log__c();
-            error.Exception__c = e.getMessage();
+            error.Exception__c = 'generateQuotePDF '+ e.getMessage();
             insert error;
         }
     }
@@ -136,7 +130,7 @@ public with sharing class RE_QuoteGenerate {
             insert error;
         }
     }
-    
+
     @AuraEnabled(Cacheable = true)
     public static String getQuoteConfirm(String recordId) {
         try{

@@ -1,5 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getProductPrice from '@salesforce/apex/RE_SearchEngineController.getProductPrice';
 import getStandardProductPrice from '@salesforce/apex/RE_SearchEngineController.getStandardProductPrice';
 import createRequest from '@salesforce/apex/RE_QuoteGenerate.createRequest';
@@ -10,6 +11,7 @@ import LightningConfirm from 'lightning/confirm';
 import RE_Get_Quote from "@salesforce/label/c.RE_Get_Quote";
 import RE_Schedule_Journey from "@salesforce/label/c.RE_Schedule_Journey";
 import RE_ConfirmHeader from "@salesforce/label/c.RE_ConfirmHeader";
+import RE_Quote_Confirm from "@salesforce/label/c.RE_Quote_Confirm";
 
 const FIELDS = [
     'Product2.Name',
@@ -21,9 +23,9 @@ export default class ProductPageHeader extends LightningElement {
     @api recordId;
     @track price;
     @track showSearchComponent = false;
-    standardPrice;
-    userId = Id;
     @track quoteConfirmMessage='';
+    standardPrice;
+    userId = Id; 
 
     label={
         RE_Schedule_Journey,
@@ -54,12 +56,11 @@ export default class ProductPageHeader extends LightningElement {
             this.price = data[0].expr0;
             getStandardProductPrice({productId: this.recordId})
                 .then((result)=>{
-                    this.standardPrice = result.UnitPrice;
-            
+                    this.standardPrice = result.UnitPrice;           
                     if(this.price == 'undefined'||this.price==null){
                     this.price = this.standardPrice;
                 } 
-                })
+            })
         }
         if (error) {
             console.log(error);
@@ -87,17 +88,15 @@ export default class ProductPageHeader extends LightningElement {
     }
 
     async handleQuote(){
-            const result = await LightningConfirm.open({
-                message: this.quoteConfirmMessage,
-                variant: 'headerless',
-                label: this.label.RE_ConfirmHeader,
-                theme: 'default',
-            });
-    
-            if(result==true){
-                this.submitDetails();
+        const result = await LightningConfirm.open({
+            message: this.quoteConfirmMessage,
+            variant: 'headerless',
+            label: this.label.RE_ConfirmHeader,
+            theme: 'default',
+        });
+        if(result==true){
+            this.submitDetails();
         }
-
     }
 
     submitDetails(){
@@ -109,6 +108,5 @@ export default class ProductPageHeader extends LightningElement {
           this.error = error;
     
         });
-    }
-    
+    }   
 }
