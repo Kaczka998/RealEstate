@@ -7,12 +7,9 @@ import getEvents from '@salesforce/apex/RE_FullCalendarController.getEvents';
 import createEvent from '@salesforce/apex/RE_FullCalendarController.createEvent';
 import Id from '@salesforce/user/Id';
 
-import RE_Edit from "@salesforce/label/c.RE_Edit";
 import RE_Cancel from "@salesforce/label/c.RE_Cancel";
-import RE_AddProducts from "@salesforce/label/c.RE_AddProducts";
-import RE_CancelAddProducts from "@salesforce/label/c.RE_CancelAddProducts";
-import RE_CancelEditDetails from "@salesforce/label/c.RE_CancelEditDetails";
 import RE_Save from "@salesforce/label/c.RE_Save";
+import RE_Schedule from "@salesforce/label/c.RE_Schedule";
 
 export default class AppointmentScheduler extends LightningElement {
     @api recordId;
@@ -31,11 +28,8 @@ export default class AppointmentScheduler extends LightningElement {
     enableSubmit = false;
 
     label={
-      RE_Edit,
       RE_Cancel,
-      RE_AddProducts,
-      RE_CancelAddProducts,
-      RE_CancelEditDetails,
+      RE_Schedule,
       RE_Save
     }
 

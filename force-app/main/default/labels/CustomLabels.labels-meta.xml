@@ -483,4 +483,46 @@
         <shortDescription>RE_Toilet</shortDescription>
         <value>Toilet</value>
     </labels>
+    <labels>
+        <fullName>RE_ConfirmHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ConfirmHeader</shortDescription>
+        <value>Please Confirm</value>
+    </labels>
+    <labels>
+        <fullName>RE_Get_Quote</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE Get Quote</shortDescription>
+        <value>Get Quote</value>
+    </labels>
+    <labels>
+        <fullName>RE_Quote_Confirm</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE Quote Confirm</shortDescription>
+        <value>Are you sure you want to generate quote PDF from {0} and send it to your email?</value>
+    </labels>
+    <labels>
+        <fullName>RE_ScheduleJourneyHeader</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_ScheduleJourneyHeader</shortDescription>
+        <value>Schedule a journey around {0} with our agent.</value>
+    </labels>
+    <labels>
+        <fullName>RE_Schedule_Journey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE Schedule Journey</shortDescription>
+        <value>Schedule Journey</value>
+    </labels>
+    <labels>
+        <fullName>RE_Schedule</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RE_Schedule</shortDescription>
+        <value>Schedule</value>
+    </labels>
 </CustomLabels>

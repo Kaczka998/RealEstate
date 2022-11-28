@@ -83,6 +83,7 @@
 		<members>RE_CancelAddProducts</members>
 		<members>RE_CancelEditDetails</members>
 		<members>RE_Clear</members>
+		<members>RE_ConfirmHeader</members>
 		<members>RE_Delete</members>
 		<members>RE_DeleteSelected</members>
 		<members>RE_Description</members>
@@ -99,6 +100,7 @@
 		<members>RE_Furnished</members>
 		<members>RE_GaragingSpaces</members>
 		<members>RE_GaragingSpacesHelp</members>
+		<members>RE_Get_Quote</members>
 		<members>RE_HideFilters</members>
 		<members>RE_Increment</members>
 		<members>RE_InputPlaceholder</members>
@@ -127,10 +129,13 @@
 		<members>RE_ProductsNotAdded</members>
 		<members>RE_PropertyAreaMax</members>
 		<members>RE_PropertyAreaMin</members>
+		<members>RE_Quote_Confirm</members>
 		<members>RE_RecordType</members>
 		<members>RE_Rooms</members>
 		<members>RE_RoomsHelp</members>
 		<members>RE_Save</members>
+		<members>RE_ScheduleJourneyHeader</members>
+		<members>RE_Schedule_Journey</members>
 		<members>RE_Search</members>
 		<members>RE_ShowFilters</members>
 		<members>RE_StartDate</members>
@@ -138,6 +143,7 @@
 		<members>RE_SwimmingPool</members>
 		<members>RE_SwimmingPoolHelp</members>
 		<members>RE_Toilet</members>
+		<members>RE_Schedule</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>

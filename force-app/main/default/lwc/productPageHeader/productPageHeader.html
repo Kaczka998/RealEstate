@@ -4,8 +4,8 @@
             record-id={recordId}
         ></c-appointment-scheduler>
     <lightning-card> 
-        <lightning-button label="Get Quote" slot="actions" onclick={handleQuote}></lightning-button>
-        <lightning-button label="Schedule Journey" slot="actions" onclick={handleClick}></lightning-button>
+        <lightning-button label={label.RE_Get_Quote} slot="actions" onclick={handleQuote}></lightning-button>
+        <lightning-button label={label.RE_Schedule_Journey} slot="actions" onclick={handleClick}></lightning-button>
         <div class="slds-p-around_small" style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
             <div style="font-size:xx-large;">
                     <lightning-icon icon-name="standard:household"></lightning-icon> {name}

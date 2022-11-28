@@ -78,6 +78,21 @@ public with sharing class RE_SearchEngineController {
         }
     }
 
+    @AuraEnabled
+    public static void createRequest(String recordId, String userId, Decimal price){
+        try{
+            Quote_Community_Request__e request = new Quote_Community_Request__e();
+            request.Record_Id__c = recordId;
+            request.User_Id__c = userId;
+            request.Price__c = price;
+
+            EventBus.publish(request);
+        }
+        catch(Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }     
+    }
+
 
     @AuraEnabled(cacheable = true)
     public static AggregateResult[] getProductPrice(String productId) {

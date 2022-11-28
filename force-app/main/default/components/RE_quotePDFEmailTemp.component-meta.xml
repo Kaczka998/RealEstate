@@ -12,4 +12,9 @@
         <minorNumber>7</minorNumber>
         <namespace>sf_com_apps</namespace>
     </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>230</minorNumber>
+        <namespace>tgn</namespace>
+    </packageVersions>
 </ApexComponent>

@@ -56,6 +56,7 @@ public without sharing class RE_FullCalendarController {
         }
     }
 
+
     @AuraEnabled
     public static User getAgentInfo(String recordId) {
         Product2 selectedProduct = [SELECT Id, Apartment_Agent__c FROM Product2 WHERE Id = :recordId];
