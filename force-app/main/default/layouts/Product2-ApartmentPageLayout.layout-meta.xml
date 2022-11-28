@@ -41,7 +41,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Email_Picture_URL__c</field>
+                <field>Apartment_Agent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Apartment_Agent_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -136,5 +136,20 @@ public with sharing class RE_QuoteGenerate {
             insert error;
         }
     }
+    
+    @AuraEnabled(Cacheable = true)
+    public static String getQuoteConfirm(String recordId) {
+        try{
+            Product2 product = [SELECT Id, Name FROM Product2 WHERE Id =: recordId];
+            List<String> labelValues = new List<String>();
+            labelValues.add(product.Name);
+            String label = Label.RE_Quote_Confirm;
+            String title = String.format(label, labelValues);    
+            return title;
+        }
+        catch(Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 
 }

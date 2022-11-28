@@ -3,8 +3,13 @@ import { getRecord } from 'lightning/uiRecordApi';
 import getProductPrice from '@salesforce/apex/RE_SearchEngineController.getProductPrice';
 import getStandardProductPrice from '@salesforce/apex/RE_SearchEngineController.getStandardProductPrice';
 import createRequest from '@salesforce/apex/RE_QuoteGenerate.createRequest';
+import getQuoteConfirm from '@salesforce/apex/RE_QuoteGenerate.getQuoteConfirm';
 import Id from '@salesforce/user/Id';
 import LightningConfirm from 'lightning/confirm';
+
+import RE_Get_Quote from "@salesforce/label/c.RE_Get_Quote";
+import RE_Schedule_Journey from "@salesforce/label/c.RE_Schedule_Journey";
+import RE_ConfirmHeader from "@salesforce/label/c.RE_ConfirmHeader";
 
 const FIELDS = [
     'Product2.Name',
@@ -18,6 +23,29 @@ export default class ProductPageHeader extends LightningElement {
     @track showSearchComponent = false;
     standardPrice;
     userId = Id;
+    @track quoteConfirmMessage='';
+
+    label={
+        RE_Schedule_Journey,
+        RE_Get_Quote,
+        RE_ConfirmHeader,
+        RE_Quote_Confirm
+    }
+
+    connectedCallback(){
+        getQuoteConfirm({recordId: this.recordId})
+       .then(result=>{
+           this.quoteConfirmMessage=result;
+       })
+       .catch(error => {
+           const toastEvent = new ShowToastEvent({
+               title: this.label.RE_Error,
+               message: error["body"]["message"],
+               variant: "error"
+             });
+               this.dispatchEvent(toastEvent);
+       })
+    }
 
     @wire(getProductPrice, { productId: '$recordId'})
     wiredResult(wiredResult) {
@@ -60,9 +88,9 @@ export default class ProductPageHeader extends LightningElement {
 
     async handleQuote(){
             const result = await LightningConfirm.open({
-                message: 'Do you want to generate quote PDF from '+this.name+' and send it to your email?',
+                message: this.quoteConfirmMessage,
                 variant: 'headerless',
-                label: 'Please Confirm',
+                label: this.label.RE_ConfirmHeader,
                 theme: 'default',
             });
     
