@@ -22,7 +22,7 @@ public with sharing class RE_quoteEmailTemplate {
         EmailTemplate et = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'QuoteEmailTemplate'];
         Quote quote = [SELECT OpportunityId, Name FROM Quote WHERE Id = :quoteId];
         Opportunity opportunity = [SELECT AccountId FROM Opportunity WHERE Id = :quote.OpportunityId];
-        Contact con = [SELECT Id, Email FROM Contact WHERE AccountId = :opportunity.AccountId];
+        Contact con = [SELECT Id, Email FROM Contact WHERE AccountId = :opportunity.AccountId LIMIT 1];
         Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         attachment.setContentType('application/pdf');
