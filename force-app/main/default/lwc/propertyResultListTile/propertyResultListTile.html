@@ -1,0 +1,55 @@
+<template>
+    <template if:false={isMobile}>
+        <div class="container">
+            <lightning-layout-item>
+            <a href={recordPageUrl} target="_blank" rel="noopener noreferrer">
+                <img class="product-img" src={product.DisplayUrl}></img>
+                <div class="title">
+                    <p>{product.Name}</p>
+                </div>
+            
+            <div class="overlay">
+                <div class="text">
+                    {product.Name}
+                    <p>{product.Description}</p>
+                    <p>{product.Street__c}</p>
+                    <p>{product.Postal_Code__c} {product.City__c}</p>
+                    <p style="margin-top: 10px;"><lightning-formatted-number 
+                        value={price} 
+                        format-style="currency"
+                        currency-code="USD"
+                        ></lightning-formatted-number>
+                    </p>
+                </div>
+            </div>
+            </a>
+        </lightning-layout-item>
+        </div>
+    </template>
+    <template if:true={isMobile}>
+        <div class="container">
+            <lightning-layout-item>
+            <a href={recordPageUrl} target="_blank" rel="noopener noreferrer">
+                <img alt="" class="product-img" src={product.DisplayUrl} ></img></a>
+                <div class="title">
+                    <p>{product.Name}</p> <lightning-button-icon icon-name={iconname}  alternative-text="Details" title="Details" onclick={handleDetails}></lightning-button-icon>
+                </div>
+            <template if:true={showDetails}>
+            <div class="details">
+                <div class="textD">
+                    <p>{product.Description}</p>
+                    <p>{product.Street__c}</p>
+                    <p>{product.Postal_Code__c} {product.City__c}</p>
+                    <p style="margin-top: 10px;"><lightning-formatted-number 
+                        value={price} 
+                        format-style="currency"
+                        currency-code="USD"
+                        ></lightning-formatted-number>
+                    </p>
+                </div>
+            </div>
+        </template>
+        </lightning-layout-item>
+        </div>
+    </template>
+</template>

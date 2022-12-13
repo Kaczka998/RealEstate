@@ -1,0 +1,136 @@
+<template>
+    <template if:true={showModal}>
+        <section
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        aria-describedby="modal-content-id-1"
+        class="slds-modal slds-fade-in-open"
+    >
+      <div class="slds-modal__container" style="overflow:visible;">
+        <header class="slds-modal__header">
+          <lightning-button-icon
+              class="slds-modal__close"
+              title="Close"
+              icon-name="utility:close"
+              icon-class="slds-button_icon-inverse"
+              onclick={closeModal}
+          ></lightning-button-icon>
+            <h2 id="id-of-modalheader-h2" class="slds-text-heading_large">
+                {modalHeader}
+            </h2>
+        </header>
+        <div class="slds-modal__content" id="modal-content-id-1">
+          <lightning-layout>
+            <lightning-layout-item flexibility="auto">
+              <article class="slds-card">
+                <div
+                  class="slds-card__body slds-card__body_inner"
+                  style="margin: 0"
+                >
+                  <template if:false={editMode}>
+                    <lightning-layout class="journey__modal">
+                        <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                            <lightning-icon icon-name="standard:event" alternative-text="Approved" title="Approved"></lightning-icon>
+                            <lightning-formatted-text value={dateValue} class="input"></lightning-formatted-text>
+                         </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                            <lightning-icon icon-name="standard:today" alternative-text="Approved" title="Approved"></lightning-icon>
+                            <lightning-formatted-text value={hoursValue} class="input"></lightning-formatted-text>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                            <lightning-icon icon-name="standard:people" alternative-text="Approved" title="Approved" style="max-height:min-content"></lightning-icon>
+                            <lightning-formatted-text value={apartmentAgent}  class="input"></lightning-formatted-text>
+                         </lightning-layout-item>
+                         <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                            <lightning-icon icon-name="standard:location" alternative-text="Approved" title="Approved" ></lightning-icon>
+                            <lightning-formatted-address
+                                street={property.Street__c}
+                                city={property.City__c}
+                                country={property.Country__c}
+                                postal-code={property.Postal_Code__c}
+                                class="input"
+                            ></lightning-formatted-address>
+                         </lightning-layout-item>
+                    </lightning-layout>
+                  </template>
+                  <template if:true={editMode}>
+
+                    <div class="slds-modal__content"  style="overflow:visible;" id="modal-content-id-3">
+                        <lightning-layout class="journey__modal">
+                            <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                                <lightning-icon icon-name="standard:event" alternative-text="Approved" title="Approved"></lightning-icon>
+                                <lightning-input type="date"  min={todaysDate} name="inputDate" label="" value={dateValue} variant="label-hidden" class="input" onchange={handleDateChange} required="required"></lightning-input>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                                <lightning-icon icon-name="standard:today" alternative-text="Approved" title="Approved"></lightning-icon>
+                                <lightning-combobox
+                                    name="inputHours"
+                                    label="inputHours"
+                                    variant="label-hidden"
+                                    value={selectedOption}
+                                    placeholder=""
+                                    options={getHours}
+                                    onchange={handleChange} 
+                                    required="required"
+                                    dropdown-alignment="auto"
+                                    class="input"></lightning-combobox>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                                <lightning-icon icon-name="standard:people" alternative-text="Approved" title="Approved" style="max-height:min-content"></lightning-icon>
+                                <lightning-formatted-text value={apartmentAgent} class="input"></lightning-formatted-text>
+                             </lightning-layout-item>
+                             <lightning-layout-item size="6" class="slds-p-around_small layout__item">
+                                <lightning-icon icon-name="standard:location" alternative-text="Approved" title="Approved" ></lightning-icon>
+                                <lightning-formatted-address
+                                    street={property.Street__c}
+                                    city={property.City__c}
+                                    country={property.Country__c}
+                                    postal-code={property.Postal_Code__c}
+                                    class="input"
+                                ></lightning-formatted-address>
+                             </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                  </template>
+                </div>
+              </article>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+        <footer class="slds-modal__footer slds-grid slds-grid_align-spread">
+          <lightning-button
+            variant="brand-outline"
+            label={label.RE_Cancel}
+            onclick={closeModal}
+            title="Cancel"
+            class="slds-var-m-left_x-small"
+          ></lightning-button>
+        <template if:false={editMode}>
+          <lightning-button
+            variant="brand"
+            label={label.RE_Schedule}
+            onclick={handleSave}
+            title="switchToEditMode"
+            class="slds-var-m-left_x-small"
+          ></lightning-button>
+        </template>
+        <template if:true={editMode}>
+            <template if:true={enableSubmit}>
+            <lightning-button
+              variant="brand"
+              label="Save"
+              type="Submit"
+              onclick={switchToViewMode}
+              title="confirm"
+              class="slds-var-m-left_x-small"
+            ></lightning-button>
+        </template>
+          </template>
+        </footer>
+      </div>
+    </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -113,7 +113,8 @@
             <select id="00N7Q00000DXaY9" name="00N7Q00000DXaY9" title="Product Interest" required="true">
             <option value="">--None--</option>
             <option value="Business Premises">Business Premises</option>
-            <option value="Flats And Apartments">Flats And Apartments</option>
+            <option value="Flats">Flats</option>
+            <option value="Apartments">Apartments</option>
             </select>
             </p>
             <p type="Company:" id="companyC" style="display: none"><abbr class="required"> *</abbr><input  id="company" maxlength="40" placeholder="Tell us about your company.." name="company" size="20" type="text" required="required" /></p>
@@ -150,7 +151,7 @@ selectElement.addEventListener('change', (event) => {
 
     
   }
-  else if (event.target.value == 'Flats And Apartments') {
+  else if (event.target.value == 'Flats' || event.target.value == 'Apartments') {
     document.getElementById("companyC").style.display = "none";
     document.getElementById("company").required = "";
     document.getElementById("form").style.height = "500px";

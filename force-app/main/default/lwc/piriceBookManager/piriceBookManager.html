@@ -1,0 +1,32 @@
+<template>
+  <c-pricebook-new-modal
+    onrefreshpricebooks = {refreshPricebooksHandler} 
+  ></c-pricebook-new-modal>
+    <lightning-card title={label.RE_Pricebooks}>
+        <lightning-button label={label.RE_New} slot="actions" onclick={createNew}></lightning-button>
+        <div style="height: auto;">
+            <lightning-datatable
+              key-field="id"
+              data={prriceBookInfo}
+              show-row-number-column
+              row-number-offset="0"
+              suppress-bottom-bar
+              columns={columns}
+              onrowaction={handleRowAction}
+              hide-checkbox-column="true"
+            >
+            </lightning-datatable>
+          </div>
+    </lightning-card>
+<template if:true={showEdit}>
+    <c-pricebook-edit-modal
+    get-id-from-parent={priceBookId}
+    onrefresheditpricebooks = {refreshPricebooksHandler} 
+  ></c-pricebook-edit-modal>
+  </template>
+  <template if:true={showDetails}>
+    <c-pricebook-details-modal
+      get-id-from-parent={priceBookId}
+    ></c-pricebook-details-modal>
+  </template>
+</template>

@@ -1,0 +1,37 @@
+<template>
+    <div class="container">
+        <div class="leftside">
+        <c-default-photo
+          record-id={recordId}>
+        </c-default-photo>
+
+      </div> 
+      <div class="rightside">
+          <br />
+          <div
+            class="
+              slds-page-header__row
+              slds-var-m-top_x-small
+              slds-grid slds-wrap
+            "
+          >
+            <ul class="slds-grid slds-wrap slds-gutters">
+              <template if:true={files}>
+                <lightning-layout class='casedt'>
+                <template for:each={files} for:item="file">
+                  <c-product-photo-gallery-card
+                    key={file.Id}
+                    file={file}
+                    record-id={recordId}
+                    thumbnail={file.Url}
+                  ></c-product-photo-gallery-card>
+                </template>
+                </lightning-layout>
+              </template>
+            </ul>
+          </div>
+  
+        
+      </div>
+  </div>
+    </template>

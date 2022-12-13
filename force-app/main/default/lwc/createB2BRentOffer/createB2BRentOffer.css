@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    height: 50vh;
+}
+
+.leftside{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 33%;
+    margin-right: 1%;
+}
+.rightside{
+    margin-right: 2%;
+    width: 32%;
+    height: 30vh;
+}
+
+.currencyInput{
+    width:100%;   
+    padding-left: 6px;
+    margin: 0 0 8px;
+}
+.currencyInput p{
+    padding-left: 4px;
+    font-size: 0.75rem;
+}
+
+.input{
+    margin-left: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}

@@ -1,0 +1,27 @@
+<template>
+    <lightning-card
+    title={label.RE_AvailableProducts}>
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size-1_of_4">
+          <lightning-combobox
+          name="recordType"
+          label={label.RE_RecordType}
+          value={recodTypeValue}
+          placeholder="Select Record Type"
+          options={options}
+          onchange={handleTypeChange} ></lightning-combobox>
+        </div>       
+      </div>
+          <lightning-button slot ="actions" onclick={handleclick} label={label.RE_AddSelected} variant="brand"></lightning-button>      
+    </lightning-card>
+      <div class="dataContainer slds-p-horizontal_small">
+          <lightning-datatable
+            key-field="Id"
+            data={products}
+            show-row-number-column
+            row-number-offset="0"
+            columns={columns}
+          >
+          </lightning-datatable>
+      </div>
+</template>
