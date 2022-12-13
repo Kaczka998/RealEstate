@@ -65,6 +65,7 @@ public with sharing class RE_SearchEngineController {
     @AuraEnabled(Cacheable = true)
     public static String getProductsCount(String recordType) {
         try{
+            system.debug(recordType);
             List<Product2> products = [SELECT Id, Name, RecordType.Name FROM Product2 WHERE RecordType.Name LIKE: recordType];
             Integer count = products.size();
             List<String> labelValues = new List<String>();
@@ -194,7 +195,9 @@ public with sharing class RE_SearchEngineController {
                 wrapper.location = '\'%' + wrapper.location + '%\'';
                 query+=' AND City__c LIKE '+wrapper.location;
             }
-            query += ' LIMIT '+wrapper.limitV+' OFFSET '+wrapper.offsetV;
+            if(wrapper.limitV!=null && wrapper.offsetV!=null){
+                query += ' LIMIT '+wrapper.limitV+' OFFSET '+wrapper.offsetV;
+            }
 
             system.debug(query);
             return query; 

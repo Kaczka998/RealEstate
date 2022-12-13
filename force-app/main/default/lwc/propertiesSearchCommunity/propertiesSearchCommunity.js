@@ -29,7 +29,7 @@ const bathroomOptions = [
     { label: 'Jacuzzi', value: 'Jacuzzi' }
   ];
 
-  const recordType = 'Apartments';
+//   const recordType = 'Apartments';
 
 export default class PropertiesSearchC extends LightningElement {
     @api propertyList;
@@ -38,7 +38,7 @@ export default class PropertiesSearchC extends LightningElement {
     @track bathroomOptions = bathroomOptions;
     @track allValues = [];
     paramsWrapper;
-    recordType = recordType;
+    @api recordType;
     searchKey ='';
     areaMin;
     areaMax;

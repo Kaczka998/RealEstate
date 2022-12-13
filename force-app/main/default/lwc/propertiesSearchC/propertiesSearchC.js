@@ -181,7 +181,8 @@ export default class PropertiesSearchC extends LightningElement {
     }
  
     last() {
-        this.pageNumber = Math.ceil((this.propertyList.length-4)/5)+1
+        const num = this.productsCount.substring(32, 34);
+        this.pageNumber = Math.ceil(num/5);
         this.updatePage()
     }
 
@@ -191,7 +192,10 @@ export default class PropertiesSearchC extends LightningElement {
     }
 
     next() {
-        this.pageNumber = Math.min(Math.ceil((this.propertyList.length-4)/5)+1, this.pageNumber + 1)
-        this.updatePage()
+        const num = this.productsCount.substring(32, 34);
+        if(this.pageNumber+1<=Math.ceil(num/5)){
+            this.pageNumber = Math.min(Math.ceil((this.propertyList.length-4)/5)+this.pageNumber, this.pageNumber + 1)
+            this.updatePage();
+        }
     } 
 }
