@@ -1,0 +1,39 @@
+<template>
+    <div class="caseSuppContainer">
+        <div class="caseSuppContainerImage">
+            <c-support-page-image></c-support-page-image>
+        </div>
+        <div class="caseSuppContainerForm">
+            <lightning-card title={label.RE_ContactUs} icon-name="standard:problem">
+                <div class="slds-m-around_medium">
+                    <lightning-combobox
+                                            name="inputProperty"
+                                            class="inputProperty"
+                                            label={label.RE_Property_Name}
+                                            variant="label-stacked"
+                                            value={currProperty}
+                                            placeholder=""
+                                            options={selectOptions}
+                                            onchange={handlePropertyChange}
+                                            required="required"
+                                            dropdown-alignment="auto">
+                    </lightning-combobox>
+                    <lightning-combobox
+                                            name="inputType"
+                                            class="inputType"
+                                            label={label.RE_Type}
+                                            variant="label-stacked"
+                                            value={selectedType}
+                                            placeholder=""
+                                            options={typeOptions}
+                                            onchange={handleTypeChange}
+                                            required="required"
+                                            dropdown-alignment="auto">
+                    </lightning-combobox>
+                    <lightning-textarea style="margin-bottom: 10px;" name={label.RE_Description} label="Description" value={description} onchange={handleDescriptionChange}></lightning-textarea>
+                    <lightning-button label={label.RE_CreateCase} variant="brand" onclick={createCaseHandler}></lightning-button>
+                </div>
+             </lightning-card>
+        </div>
+    </div>
+</template>

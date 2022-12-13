@@ -11,6 +11,7 @@ export default class CustomRecordSearch extends LightningElement {
     @track showC=false;
     @track showEmergency=false;
     @track productsCount = '';
+    @track viewC=false;
 
     roleName;
     recordType='';
@@ -24,14 +25,14 @@ export default class CustomRecordSearch extends LightningElement {
             this.roleName=result;   
             if(this.roleName=='Sales Representants B2B'){
                 this.showB=true;
-                this.recordType="B2B"
+                this.recordType="Business Premises"
             }
             else if(this.roleName=='Sales Representants B2C'){
                 this.showC=true;
-                this.recordType="B2C"
+                this.recordType="Apartments"
             }
             else{
-                this.showEmergency=true;
+                this.showEmergency=true;             
             }
         })
         .catch(error => {
@@ -43,7 +44,18 @@ export default class CustomRecordSearch extends LightningElement {
               });
                 this.dispatchEvent(toastEvent);
         })  
+    }
 
+    renderedCallback(){
+
+        if(this.showEmergency==true){
+            if(this.viewC==true){
+                this.recordType="Apartments";
+            }else if(this.viewC==false){
+                this.recordType="Business Premises";
+            }
+        }
+        console.log(this.recordType);
         getProductsCount({recordType: this.recordType})
         .then(result=>{
             this.productsCount=result;
@@ -57,7 +69,18 @@ export default class CustomRecordSearch extends LightningElement {
               });
                 this.dispatchEvent(toastEvent);
         })  
+        console.log(this.productsCount);
     }
 
+    changeView(){
+        if(this.viewC==false){
+            this.viewC=true;
+            this.recordType="Apartments";
+        }
+        else{
+            this.viewC=false;
+            this.recordType="Business Premises";
+        }
+    }
     
 }

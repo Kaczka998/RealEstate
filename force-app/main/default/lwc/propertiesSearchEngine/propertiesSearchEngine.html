@@ -6,11 +6,16 @@
         <c-properties-search-c></c-properties-search-c>
     </template>
     <template if:true={showEmergency}>
-        <c-properties-search-b
-        products-count={productsCount}
-        ></c-properties-search-b>
-        <c-properties-search-c
-        products-count={productsCount}
-        ></c-properties-search-c>
+        <lightning-button variant="brand-outline" label="change view" onclick={changeView}></lightning-button>
+        <template if:false={viewC}>
+            <c-properties-search-b
+            products-count={productsCount}
+            ></c-properties-search-b>
+        </template>
+        <template if:true={viewC}>
+            <c-properties-search-c
+            products-count={productsCount}
+            ></c-properties-search-c>
+        </template>
     </template>
 </template>

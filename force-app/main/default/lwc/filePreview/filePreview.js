@@ -1,7 +1,7 @@
 import { LightningElement, wire, api, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import getFileVersions from "@salesforce/apex/RE_photoGalleryController.getVersionFiles";
+import getVersionFiles from "@salesforce/apex/RE_photoGalleryController.getVersionFiles";
 import updateVersions from "@salesforce/apex/RE_photoGalleryController.updateVersions";
 
 export default class FilePreview extends LightningElement {
@@ -13,7 +13,7 @@ export default class FilePreview extends LightningElement {
       return [".png", ".jpg", ".jpeg"];
     }
   
-    @wire(getFileVersions, { recordId: "$recordId" })
+    @wire(getVersionFiles, { recordId: "$recordId" })
     fileResponse(value) {
       this.wiredActivities = value;
       const { data, error } = value;

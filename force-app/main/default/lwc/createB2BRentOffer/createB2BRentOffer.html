@@ -1,0 +1,71 @@
+<template>
+    <div class="container">
+        <div class="leftside">
+            <lightning-card title={label.RE_CreateB2BOpportunityTitle} icon-name="standard:work_plan">
+                <div class="slds-m-around_medium">
+                    <lightning-combobox
+                                            name="inputProperty"
+                                            class="inputProperty"
+                                            label={label.RE_Property_Name}
+                                            variant="label-stacked"
+                                            value={currProperty}
+                                            placeholder=""
+                                            options={selectOptions}
+                                            onchange={handlePropertyChange}
+                                            required="required"
+                                            dropdown-alignment="auto">
+                    </lightning-combobox>
+                    <template if:true={selectedPropertyId}>
+                        <div class="currencyInput">
+                            <p>{label.RE_Price} </p>
+                                <!-- <lightning-icon icon-name="utility:edit" size="xx-small" onclick={handleEdit} style="cursor: pointer;"></lightning-icon> -->
+                            <div class="input">
+                                <!-- <template if:false={showEdit}> -->
+                                    <lightning-formatted-number format-style="currency" currency-code="EUR" value={price}></lightning-formatted-number> /{label.RE_Month}
+                                <!-- </template>
+                                <template if:true={showEdit}>
+                                    <lightning-input formatter="currency" type="number" value={price} onchange={handlePriceChange}></lightning-input> /{label.RE_Month}
+                                </template> -->
+                            </div>
+                        </div>
+                        </template>
+                    <lightning-combobox
+                                            name="inputType"
+                                            class="inputType"
+                                            label={label.RE_RevenuePeriodLength}
+                                            variant="label-stacked"
+                                            value={selectedPeriod}
+                                            placeholder="12"
+                                            options={periodOptions}
+                                            onchange={handlePeriodChange}
+                                            required="required"
+                                            dropdown-alignment="auto">
+                    </lightning-combobox>
+                    <lightning-combobox
+                                        name="inputAccount"
+                                        class="inputAccount"
+                                        label={label.RE_RelatedClientAccount}
+                                        variant="label-stacked"
+                                        value={currAccount}
+                                        placeholder=""
+                                        options={accountOptions}
+                                        onchange={handleAccountChange}
+                                        required="required"
+                                        dropdown-alignment="auto">
+                    </lightning-combobox>
+                    <lightning-button label={label.RE_CreateOpportunity} variant="brand" onclick={createOffer}></lightning-button>
+                </div>
+             </lightning-card>
+        </div>
+        <div class="rightside">
+            <c-default-photo
+                record-id={selectedPropertyId}>
+            </c-default-photo>
+        </div>
+        <template if:true={selectedPropertyId}>
+        <c-product-map
+            record-id={selectedPropertyId}>
+        </c-product-map>
+    </template>
+    </div>
+</template>
